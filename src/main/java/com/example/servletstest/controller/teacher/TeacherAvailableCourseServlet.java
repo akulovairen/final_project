@@ -45,7 +45,7 @@ public class TeacherAvailableCourseServlet extends HttpServlet {
         req.setAttribute("currentPage", currentPage);
         req.setAttribute("recordsPerPage", recordsPerPage);
 
-        List<CourseDto> courseByTeacher = courseService.findCourseByTeacher(teacherId, "available",recordsPerPage,offset);
+        List<CourseDto> courseByTeacher = courseService.findCourseByTeacher(teacherId, "available");
         req.setAttribute("courseAvailable", courseByTeacher);
 
         req.getRequestDispatcher("/WEB-INF/jsp/teacher/teacherAvailableCourse.jsp").forward(req, resp);

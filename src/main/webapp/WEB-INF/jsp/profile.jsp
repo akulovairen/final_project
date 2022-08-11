@@ -182,7 +182,39 @@
 <navbar:NavAdmin/>
     </c:when>
     <c:when test="${role eq 'teacher'}">
-<navbar:NavTeacher/>
+        <div class="bg-nav bg-dark">
+            <div class="container">
+                <nav class="navbar navbar-expand-sm  navbar-dark">
+                    <!-- Brand -->
+                    <a class="navbar-brand" href="/teacherPage">Help In Wartime</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <!-- Navbar links -->
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/teacherPage"><i class="fas fa-solid fa-home"></i> <fmt:message key="login.toHomePage"/> <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/profile"><i class="fas fa-solid fa-user"></i> <fmt:message key="login.profile"/></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" onclick="return confirmLogout();" href="/logout"><i class="fas fa-solid fa-arrow-right"></i> <fmt:message key="login.logout"/></a>
+                                <script>
+                                    function confirmLogout() {
+                                        if (confirm("Ви впевнені,що хочете вийти?")) {
+                                            location.href = '/logout';
+                                        } else {
+                                            return false;
+                                        }
+                                    }
+                                </script>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div><br/>
     </c:when>
     <c:otherwise>
 <navbar:NavStudent/>
@@ -238,34 +270,6 @@
         </div>
     </div>
 </div>
-
-<%--    <h1>--%>
-<%--        Обо мне--%>
-<%--    </h1>--%>
-
-<%--    Имя: <c:out value="${userFound.name}"/><br>--%>
-<%--    Фамилия: <c:out value="${userFound.surname}"/><br>--%>
-<%--    Дата рождения: <c:out value="${userFound.birthday}"/><br>--%>
-<%--    Email: <c:out value="${userFound.email}"/><br>--%>
-<%--    Перемкнути мову:--%>
-<%--    <button><a href="?lang=EN"><img src="/images?filename=british-flag-2.png"/>Англійська</a></button>--%>
-<%--    <button><a href="?lang=UA"><img src="/images?filename=flag-3d-UA 2.png"/>Українська</a></button><br/>--%>
-
-<%--    <input type="button" value="Редактировать" onclick="location.href='/editProfile'"/>--%>
-
-<%--    <input type="button" value="Вийти з аккаунту" onclick="return confirmDelete();"/><br>--%>
-
-<%--    <script>--%>
-<%--        function confirmDelete(){--%>
-<%--            if(confirm("Ви точно хочете вийти?")){--%>
-<%--                location.href='/logout';--%>
-<%--            }else {--%>
-<%--                return false;--%>
-<%--            }--%>
-<%--        }--%>
-<%--    </script>--%>
-
-<%--    <input type="button" value="Назад" onclick="window.history.back()"/>--%>
 
 </body>
 </html>

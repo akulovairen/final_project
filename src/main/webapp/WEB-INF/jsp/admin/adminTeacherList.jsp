@@ -26,12 +26,6 @@
         @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
         @import url(https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css);
 
-        /*.hm-gradient {*/
-        /*    background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);*/
-        /*}*/
-        /*.darken-grey-text {*/
-        /*    color: #2E2E2E;*/
-        /*}*/
         .input-group.md-form.form-sm.form-2 input {
             border: 1px solid #bdbdbd;
             border-top-left-radius: 0.25rem;
@@ -47,15 +41,6 @@
         .form-2 .input-group-addon {
             border: 1px solid #ba68c8;
         }
-        /*.danger-text {*/
-        /*    color: #ff3547;*/
-        /*}*/
-        /*.success-text {*/
-        /*    color: #00C851;*/
-        /*}*/
-        /*.table-bordered.red-border, .table-bordered.red-border th, .table-bordered.red-border td {*/
-        /*    border: 1px solid #ff3547!important;*/
-        /*}*/
         .table.table-bordered th {
             text-align: center;
         }
@@ -73,9 +58,7 @@
     <div class="container mt-4">
         <div class="card mb-4">
             <div class="card-body">
-                <!--Table-->
                 <table class="table table-hover">
-                    <!--Table head-->
                     <thead class="mdb-color darken-3">
                     <tr class="text-white">
                         <th><fmt:message key="login.nameUser"/> <fmt:message key="login.surname"/> </th>
@@ -84,8 +67,6 @@
                         <th><fmt:message key="login.delete"/></th>
                     </tr>
                     </thead>
-                    <!--Table head-->
-                    <!--Table body-->
                     <tbody>
 
                     <c:forEach var="teacher" items="${allTeacher}">
@@ -98,54 +79,26 @@
                             </td>
                             <td>
                                 <form action="/adminTeacherList?user_id=${teacher.id}" method="post">
-                                    <input type="submit" value="<fmt:message key="login.delete"/>" name="Delete"/><br>
+                                    <input type="submit" onclick="return confirmDelete();" value="<fmt:message key="login.delete"/>" name="Delete"/><br>
                                 </form>
+                                <script>
+                                    function confirmDelete() {
+                                        if (confirm("Ви впевнені,що хочете видалити?")) {
+                                            location.href = '/adminTeacherList';
+                                        } else {
+                                            return false;
+                                        }
+                                    }
+                                </script>
                             </td>
                         </tr>
                     </c:forEach>
                     </tbody>
-                    <!--Table body-->
                 </table>
-                <!--Table-->
             </div>
         </div>
     </div>
 </main>
-
-<%--<table class="table table-hover">--%>
-<%--    <thead>--%>
-<%--    <tr>--%>
-<%--        <th>Фамилия Имя</th>--%>
-<%--        <th>Дата рождения</th>--%>
-<%--    </tr>--%>
-<%--    </thead>--%>
-<%--    <tbody>--%>
-
-<%--    <c:forEach var="teacher" items="${allTeacher}">--%>
-<%--        <tr>--%>
-<%--            <td><c:out value="${teacher.surname} ${teacher.name}"/></td>--%>
-<%--            <td><c:out value="${teacher.birthday}"/></td>--%>
-
-<%--            <td>--%>
-<%--                <input type="button" onclick="location.href='/adminCoursesForTeacher?user_id=${teacher.id}'"--%>
-<%--                       value="Курсы преподавателя"/>--%>
-
-<%--            </td>--%>
-
-<%--            <td>--%>
-<%--                <form action="/adminTeacherList?user_id=${teacher.id}" method="post">--%>
-<%--                    <input type="submit" value="Удалить" name="Delete"/><br>--%>
-<%--                </form>--%>
-<%--            </td>--%>
-
-<%--        </tr>--%>
-
-<%--    </c:forEach>--%>
-
-<%--    </tbody>--%>
-<%--</table>--%>
-<%--</div>--%>
-
 <nav aria-label="Navigation for countries">
     <ul class="pagination">
         <c:if test="${currentPage != 1}">

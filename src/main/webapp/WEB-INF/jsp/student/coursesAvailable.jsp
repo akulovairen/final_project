@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="true" %>
 <fmt:setLocale value="${language}"/>
-<fmt:setBundle basename="i18n.login"/>
+<fmt:setBundle basename="localization"/>
 <%@ taglib prefix="navbar" tagdir="/WEB-INF/tags" %>
 <html>
 <head>
@@ -81,20 +81,6 @@
             background-size: cover;
         }
 
-        /*----------------Containers--------------------*/
-
-        /*#top-container-fluid-nav*/
-        /*{*/
-        /*    !*background-image: url("../images/.jpg");*!*/
-        /*    background-color:white;*/
-        /*    background-attachment:scroll;*/
-        /*    background-repeat:no-repeat;*/
-        /*    background-position:center;*/
-        /*    background-size:cover;*/
-        /*}*/
-        /*https://media.dyvys.info/2020/04/zsu-2.jpg*/
-        /*марка русский военный*/
-
         #banner-container-fluid {
             background-image: url("https://kyiv.comments.ua/img/publications/cjOOyF0Vb65hjbQ2dpQh2inchfiNaeb4.jpeg");
             /*background-color:;*/
@@ -138,90 +124,6 @@
         #banner-container-fluid .jumbotron p {
             text-align: center;
         }
-
-        /**********************
-               color-graph
-       **********************/
-        .colorgraph {
-            width: 80%;
-            text-align: center;
-            margin: 0 auto;
-        }
-
-        /**********************
-		navtabs
-**********************/
-        .tab-content {
-            padding: 20px;
-            max-height: 1000px;
-        }
-
-        /*.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link*/
-        /*{*/
-        /*    border-color:#00BCD4 #fff #00BCD4;*/
-        /*}*/
-        .tab-content .card-block {
-            padding: 5px;
-        }
-
-        .tab-content .list-group-item {
-            border: 0px solid white;
-
-        }
-
-        .tab-content .list-group-item h5 {
-            color: #057e8e;
-        }
-
-        .tab-content .list-group-item .mb-1 {
-            font-size: 15px;
-        }
-
-        /**********************
-		Left nav
-**********************/
-        span {
-            font-size: 10px;
-            float: right;
-            background-color: #F4F7F9;
-            border-radius: 10px;
-            padding: 3px 8px;
-            color: #84919B;
-        }
-
-        .lower-case {
-            color: #84919B;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        /**********************
-                Left nav
-        **********************/
-
-
-        /**********************
-                footer-container-fluid
-        **********************/
-
-        #footer-container-fluid li {
-            list-style-type: none;
-            color: #098c9c;
-            font-size: 10px;
-        }
-
-        #footer-container-fluid ul .title {
-            color: black;
-            font-size: 15px;
-        }
-
-        #footer-container-fluid ul .address {
-            color: #607d8bad;
-        }
-
-        /**********************
-                footer-container-fluid
-        **********************/
     </style>
     <style rel="css">
         .demo2 {
@@ -362,14 +264,10 @@
 <div class="container-fluid" id="banner-container-fluid">
     <div class="container">
         <div class="jumbotron">
-            <h1 class="leader">ПІДТРИМАЙ УКРАЇНУ ПІД ЧАС ВІЙНИ</h1>
+            <h1 class="leader"><fmt:message key="slogan.supportUkraine"/></h1>
             <p>SUPPORT | UKRAINE</p>
             <p class="lead">
-                <a class="btn btn-success btn-lg" href="/coursesInProgress" role="button">Повернутися</a><br/>
-                <%--                <a class="btn btn-lg" href="?lang=UA" role="button">UA</a>--%>
-                <%--                <a class="btn btn-lg" href="?lang=EN" role="button">EN</a>--%>
-                <%--                <a href="?lang=UA"><span class="glyphicon glyphicon-user"></span> UA</a>&ndash;%&gt;--%>
-                <%--                    <a href="?lang=EN"><span class=""></span> EN</a>--%>
+                <a class="btn btn-success btn-lg" href="/coursesInProgress" role="button"><fmt:message key="login.back"/></a><br/>
             </p>
         </div>
 
@@ -385,9 +283,6 @@
             </ul>
         </div>
         <div class="container">
-            <%--                <h1>--%>
-            <%--                    <fmt:message key="login.allAvailableCourses"/>--%>
-            <%--                </h1>--%>
             <h4 style="padding-top:10px"></h4>
             <div class="row">
                 <c:forEach var="course" items="${available}">
@@ -415,46 +310,5 @@
         </div>
     </div>
 </div>
-<%--<div class="dropdown">--%>
-<%--  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-<%--    Теми--%>
-<%--  </button>--%>
-<%--  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--%>
-<%--      <c:forEach var="topic" items="${allTopic}">--%>
-<%--          <li><a href="/courseByTopic?topic_id=${topic.id}"><c:out value="${topic.name}"/></a></li>--%>
-<%--      </c:forEach>--%>
-<%--  </div>--%>
-<%--</div>--%>
-
-<%--    <c:forEach var="topic" items="${allTopic}">--%>
-<%--        <a href="/courseByTopic?topic_id=${topic.id}"><c:out value="${topic.name}"/></a><br/>--%>
-<%--    </c:forEach>--%>
-
-
-<%--    <c:forEach items="${available}" var="entry">--%>
-<%--        Topic : <c:out value="${entry.key}"/> <br/>--%>
-<%--        <c:forEach items="${entry.value}" var="it">--%>
-<%--            <a href="/coursesDescription?course_id=${it.id}"><c:out value="${it.name }"/></a><br/>--%>
-<%--        </c:forEach>--%>
-<%--    </c:forEach>--%>
-
-<%--    <form action="/courseRegister" method="get">--%>
-<%--        <input type="submit" value="Зареєстровані курси">--%>
-<%--    </form>--%>
-
-<%--    <form action="/coursesCompleted" method="get">--%>
-<%--        <input type="submit" value="Закінченні курси">--%>
-<%--    </form>--%>
-
-<%--    <form action="/profile" method="get">--%>
-<%--        <input type="submit" value="Профіль">--%>
-<%--    </form>--%>
-
-<%--    <form action="/gradebookStudent" method="get">--%>
-<%--        <input type="submit" value="Журнал успішності">--%>
-<%--    </form>--%>
-
-<input type="button" value="На головну" onclick="location.href='/coursesInProgress'"/>
-
 </body>
 </html>

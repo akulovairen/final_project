@@ -78,11 +78,9 @@
         <h3>
             <fmt:message key="topic.createTopic"/>
         </h3>
-        <form action="/createTopic" name="course" method="post">
-
-            <label> <fmt:message key="login.name"/>: <input type="text" name="name"
-                                                            value="<c:if test="${not empty restoredValues.name}">${restoredValues.name}</c:if>"/>
-
+        <form action="/createTopic" name="name" method="post">
+            <label> <fmt:message key="login.name"/>:
+                <input type="text" name="name" value="<c:if test="${not empty restoredValues.name}">${restoredValues.name}</c:if>"/>
                 <c:if test="${not empty messagesMap.name}">
                     <div style="color: red">${messagesMap.name}</div>
                 </c:if>
@@ -110,8 +108,17 @@
                             <td>
                                 <form action="/deleteTopic?topic_id=${topic.id}" method="post">
                                     <i class="fas fa-trash"></i>
-                                    <input type="submit" value="<fmt:message key="login.delete"/>" name="Delete"/>
+                                    <input type="submit" onclick="confirmDelete();" value="<fmt:message key="login.delete"/>" name="Delete"/>
                                 </form>
+                                <script>
+                                    function confirmDelete() {
+                                        if (confirm("Ви впевнені,що хочете видалити?")) {
+                                            location.href = '/createTopic';
+                                        } else {
+                                            return false;
+                                        }
+                                    }
+                                </script>
                             </td>
                         </tr>
                     </c:forEach>

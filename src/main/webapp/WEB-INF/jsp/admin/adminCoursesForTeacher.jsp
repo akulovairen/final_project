@@ -113,7 +113,11 @@
         </tr>
         </thead>
         <tbody>
-
+        <c:choose>
+        <c:when test="${courseTeacher == null || courseTeacher.isEmpty()}">
+        <h5 style="color: red"><fmt:message key="course.notFound"/></h5>
+        </c:when>
+        <c:otherwise>
         <c:forEach var="course" items="${courseTeacher}">
             <tr>
                 <td><c:out value="${course.topic.name}"/></td>
@@ -126,6 +130,8 @@
                 </a></td>
             </tr>
         </c:forEach>
+        </c:otherwise>
+        </c:choose>
         </tbody>
     </table>
 

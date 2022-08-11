@@ -200,7 +200,7 @@ public class CourseDao {
      * @throws CourseNotFoundException - if the course is not found
      * @return list of courses
      */
-    public List<Course> findCourseByTeacher(int id, String status, int limit, int offset) {
+    public List<Course> findCourseByTeacher(int id, String status) {
         log.info("Getting courses for teacher from DB");
         List<Course> courseForTeacher = new ArrayList<>();
         Connection connection = sessionManager.beginSession();
@@ -208,8 +208,6 @@ public class CourseDao {
         try (PreparedStatement pst = connection.prepareStatement(SQLTask.GET_COURSE_BY_TEACHER_STATUS.QUERY)) {
             pst.setInt(1, id);
             pst.setString(2, status);
-            pst.setInt(3, limit);
-            pst.setInt(4, offset);
 
             try (ResultSet rs = pst.executeQuery()) {
 
@@ -595,11 +593,9 @@ public class CourseDao {
         List<Course> courseList = new ArrayList<>();
         Connection connection = sessionManager.beginSession();
 
-//        String sortingExt = String.format("ORDER BY %s %s", sortingColumn, sortingMode);
 
         String query = String.format(SQLTask.FIND_COURSE_NOT_FINISHED.QUERY);
         try (PreparedStatement pst = connection.prepareStatement(query)) {
-//            pst.setString(1,status);
             pst.setInt(1, teacherId);
             pst.setInt(2, limit);
             pst.setInt(3, offset);
@@ -875,7 +871,7 @@ public class CourseDao {
                 "FROM courses c " +
                 "JOIN topics t ON c.topic_id=t.id " +
                 "JOIN users u ON c.teacher_id=u.id " +
-                "WHERE c.teacher_id=? AND c.status=? LIMIT ? OFFSET ? "),  //Pagination
+                "WHERE c.teacher_id=? AND c.status=? "),  //Pagination
         GET_COURSE_BY_TEACHER("SELECT c.id, c.name as course_name, " +
                 "c.date_start, c.duration, c.description,c.topic_id , c.teacher_id,c.status , t.name as topic_name " +
                 "FROM courses c " +

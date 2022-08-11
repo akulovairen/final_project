@@ -5,6 +5,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
 public class Topic {
     @Id
     private int id;
-    @Min(message = "{topic.name.invalid}", value = 3)
+    @Size(min = 3, max = 40, message = "topic.name.invalid")
     private String name;
 
     @OneToMany(mappedBy = "course")

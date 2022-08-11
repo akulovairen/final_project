@@ -51,15 +51,6 @@ public class UserRegistrationService {
 
         final Optional<User> foundUserByEmail = usersDao.findByEmail(email);
 
-//        User user = new User();
-//        user.setName(name);
-//        user.setPassword(DigestUtils.md5Hex(password));
-//        user.setSurname(surname);
-//        user.setEmail(email);
-//        user.setBirthday(birthday);
-//        user.setRole(role);
-//        user.setLocked(false);
-
         User user = new User.UserBuilder().withName(name)
                 .withPassword(DigestUtils.md5Hex(password))
                 .withSurname(surname)

@@ -64,14 +64,6 @@ public class RegistrationServlet extends HttpServlet {
         String surname = req.getParameter("surname");
         LocalDate birthday = LocalDate.parse(req.getParameter("birthday"), formatter);
 
-//        if(!password.equals(passwordRepeat)){
-//            Map<String, String> messagesMap = Map.of("repeat_password", "Паролі повинні збігатися");
-//            req.getSession().setAttribute("messagesMap", messagesMap);
-//            RequestUtils.restoreFormValues(req);
-//            resp.sendRedirect("/registration");
-////            req.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(req, resp);
-//            return;
-//        }
         Locale locale = (Locale) req.getSession().getAttribute("userLocale");
         try {
             int studentId = registrationService.registerUser(name, surname, email, password, passwordRepeat, "student", birthday, locale);

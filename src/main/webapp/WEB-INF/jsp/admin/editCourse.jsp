@@ -185,7 +185,7 @@
                             <script>
                                 function confirmDelete(){
                                     if(confirm("Ви впевнені,що хочете видалити?")){
-                                        location.href='/deleteCourse?course_id=${course.id}';
+                                        location.href='/adminCoursesList';
                                     }else {
                                         return false;
                                     }

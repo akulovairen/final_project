@@ -89,7 +89,7 @@
                         <a href="adminCourseByTopicAvailable?topic_id=${topic_id}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage}&sortingColumn=c.date_start&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
                     </c:otherwise>
                 </c:choose></th>
-            <th><fmt:message key="login.durationInWeeks"/>
+            <th><fmt:message key="login.duration"/>
                 <c:choose>
                     <c:when test="${sortingMode eq 'DESC'}">
                         <a href="adminCourseByTopicAvailable?topic_id=${topic_id}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage}&sortingColumn=c.duration&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>

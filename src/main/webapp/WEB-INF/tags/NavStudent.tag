@@ -2,13 +2,12 @@
 <%@ tag pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${language}"/>
-<fmt:setBundle basename="i18n.login"/>
+<fmt:setBundle basename="localization"/>
 <div class="bg-nav bg-dark">
     <div class="container">
         <nav class="navbar navbar-expand-sm  navbar-dark">
             <!-- Brand -->
             <a class="navbar-brand" href="/coursesInProgress">Help In Wartime</a>
-            <%--                <img src="bird.jpg" alt="Logo" style="width:40px;">--%>
 
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

@@ -191,8 +191,8 @@ class CourseServiceTest {
         List<Course> expectedList = new ArrayList<>();
         expectedList.add(courseExpected);
 
-        given(courseDao.findCourseByTeacher(anyInt(),anyString(),anyInt(),anyInt())).willReturn(expectedList);
-        List<CourseDto> actualList = courseService.findCourseByTeacher(3, "available", 1, 1);
+        given(courseDao.findCourseByTeacher(anyInt(),anyString())).willReturn(expectedList);
+        List<CourseDto> actualList = courseService.findCourseByTeacher(3, "available");
 //        courseUserService.countStudent(course.getId());
 
         assertNotNull(actualList);

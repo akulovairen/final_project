@@ -28,25 +28,10 @@ public class TeacherCompletedCourseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String currentPageParam = req.getParameter("currentPage");
-        int currentPage = currentPageParam == null ? 1 : Integer.parseInt(currentPageParam);
-        String recordsPerPageParam = req.getParameter("recordsPerPage");
-        int recordsPerPage = recordsPerPageParam == null ? 10 : Integer.parseInt(recordsPerPageParam);
-        int offset = currentPage * recordsPerPage - recordsPerPage;
-
         int teacherId = (int) req.getSession().getAttribute("user_id");
         int rows = courseService.getNumberOfRowsTeacherStatus(CourseDao.SQLTask.GET_COURSE_BY_TEACHER_AND_STATUS_COUNT.getQUERY(), teacherId,"finished");
 
-        int nOfPages = rows / recordsPerPage;
-        if (nOfPages % recordsPerPage > 0) {
-            nOfPages++;
-        }
-
-        req.setAttribute("noOfPages", nOfPages);
-        req.setAttribute("currentPage", currentPage);
-        req.setAttribute("recordsPerPage", recordsPerPage);
-
-        List<CourseDto> courseByTeacher = courseService.findCourseByTeacher(teacherId, "finished",recordsPerPage,offset);
+        List<CourseDto> courseByTeacher = courseService.findCourseByTeacher(teacherId, "finished");
         req.setAttribute("courseFinished", courseByTeacher);
 
         req.getRequestDispatcher("/WEB-INF/jsp/teacher/teacherCompleted.jsp").forward(req, resp);

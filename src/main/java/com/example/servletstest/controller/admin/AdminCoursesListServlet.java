@@ -61,11 +61,6 @@ public class AdminCoursesListServlet extends HttpServlet {
         List<Topic> allTopic = topicService.getAllTopic();
         req.setAttribute("allTopic", allTopic);
 
-//        int topicId = Integer.parseInt(req.getParameter("topic_id"));
-
-//        List<Course> coursesByTopicAndAvailable = courseService.findCoursesByTopicAndStatus(topicId,"progress");
-//        req.setAttribute("courseTopic", coursesByTopicAndAvailable);
-
         List<Course> progressStatus = courseService.findCourseStatus("progress", recordsPerPage, offset, sortingColumn, sortingMode);
         req.setAttribute("progress", progressStatus);
 

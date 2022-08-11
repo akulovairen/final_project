@@ -8,10 +8,6 @@
 <head>
     <title>Available courses Guest</title>
 
-<%--        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--%>
-<%--        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>--%>
-<%--        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--%>
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -217,20 +213,6 @@
             background-size:cover ;
         }
 
-        /*----------------Containers--------------------*/
-
-        #top-container-fluid-nav
-        {
-            /*background-image: url("../images/.jpg");*/
-            background-color:white;
-            background-attachment:scroll;
-            background-repeat:no-repeat;
-            background-position:center;
-            background-size:cover;
-        }
-        /*https://media.dyvys.info/2020/04/zsu-2.jpg*/
-        /*марка русский военный*/
-
         #banner-container-fluid {
             background-image: url("https://kyiv.comments.ua/img/publications/cjOOyF0Vb65hjbQ2dpQh2inchfiNaeb4.jpeg");
             background-attachment: scroll;
@@ -275,115 +257,13 @@
         {
             text-align:center;
         }
-
-        /**********************
-               color-graph
-       **********************/
-        .colorgraph
-        {
-            width:80%;
-            text-align:center;
-            margin: 0 auto;
-        }
-
-        /**********************
-		navtabs
-**********************/
-        .tab-content {padding:20px;max-height:1000px;}
-        .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link
-        {
-            border-color:#00BCD4 #fff #00BCD4;
-        }
-        .tab-content .card-block
-        {
-            padding:5px;
-        }
-        .tab-content .list-group-item
-        {
-            border:0px solid white;
-
-        }
-        .tab-content .list-group-item h5
-        {
-            color:#057e8e;
-        }
-        .tab-content .list-group-item .mb-1  {
-            font-size:15px;
-        }
-        /**********************
-		Left nav
-**********************/
-        span
-        {
-            font-size:10px;
-            float:right;
-            background-color:#F4F7F9;
-            border-radius:10px;
-            padding:3px 8px;
-            color:#84919B;
-        }
-        .lower-case
-        {
-            color:#84919B;
-            font-size:12px;
-            text-align:center;
-        }
-
-        /**********************
-                Left nav
-        **********************/
-
-
-
-
-        /**********************
-                footer-container-fluid
-        **********************/
-
-        #footer-container-fluid  li
-        {
-            list-style-type:none;
-            color:#098c9c;
-            font-size:10px;
-        }
-
-        #footer-container-fluid ul .title
-        {
-            color:black;
-            font-size:15px;
-        }
-
-        #footer-container-fluid ul .address
-        {
-            color:#607d8bad;
-        }
-        /**********************
-                footer-container-fluid
-        **********************/
     </style>
 </head>
 <body>
-<%--<div class="demo2">--%>
-
-<%--                <nav class="navbar navbar-inverse">--%>
-<%--    <div class="container-fluid">--%>
-<%--        <div class="navbar-header">--%>
-<%--            <a class="navbar-brand" >HelpInWartime</a>--%>
-<%--        </div>--%>
-<%--        <ul class="nav navbar-nav">--%>
-<%--            <li class="active"><a href="/coursesListGuest"> <fmt:message key="login.availableCourse"/> </a></li>--%>
-<%--        </ul>--%>
-<%--        <ul class="nav navbar-nav navbar-right">--%>
-<%--            <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> <fmt:message key="login.register"/> </a></li>--%>
-<%--            <li><a href="/login" ><span class="glyphicon glyphicon-log-in"></span> <fmt:message key="login.login"/> </a></li>--%>
-
-<%--        </ul>--%>
-<%--    </div>--%>
-<%--</nav>--%>
 
 <nav class=" my-nav navbar navbar-light navbar-expand-lg ">
     <div class="container">
-        <a class="navbar-brand" href="/coursesListGuest">HelpInWartime</a>
+        <a class="navbar-brand" href="/coursesListGuest">Help In Wartime</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -392,87 +272,30 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/coursesListGuest"><fmt:message key="login.allCourse"/></a>
                 </li>
-<%--                <li>--%>
-<%--                    <a href="?lang=UA"><span class="glyphicon glyphicon-user"></span> UA</a>--%>
-<%--                    <a href="?lang=EN"><span class=""></span> EN</a>--%>
-<%--                </li>--%>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="#">Features</a>--%>
-<%--                </li>--%>
                 <li class="nav-item">
                     <a class="nav-link" href="/login"><fmt:message key="login.login"/></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/registration"><fmt:message key="login.register"/></a>
                 </li>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="?lang=UA">UA</a>--%>
-<%--                </li>--%>
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-item" href="?lang=EN">EN</a>--%>
-<%--                </li>--%>
             </ul>
         </div>
     </div>
 </nav>
-
-<%--<div class="container-fluid" id="top-container-fluid-nav">--%>
-<%--    <div class="container" id="top-con">--%>
-<%--        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">--%>
-<%--            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">--%>
-<%--                <span class="navbar-toggler-icon"></span>--%>
-<%--            </button>--%>
-<%--            <a class="navbar-brand" href="/coursesListGuest">HelpInWartime</a>--%>
-<%--            <a class="nav-item" href="/login">Увійти</a>--%>
-<%--            <a class="nav-item" href="/registration">Зареєструватися</a>--%>
-
-<%--            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">--%>
-<%--                <ul class="navbar-nav mr-auto mt-2 mt-md-0">--%>
-<%--                    <li class="nav-item active">--%>
-<%--                        <a class="nav-link" href="/coursesListGuest">Home <span class="sr-only">(current)</span></a>--%>
-<%--                    </li>--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link" href="#">Link</a>--%>
-<%--                    </li>--%>
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link disabled" href="#">Disabled</a>--%>
-<%--                    </li>--%>
-<%--                </ul>--%>
-<%--            </div>--%>
-<%--        </nav>--%>
-<%--    </div>--%>
-<%--</div>--%>
-
 <div class="container-fluid" id="banner-container-fluid">
     <div class="container">
         <div class="jumbotron">
-            <h1 class="leader">ПІДТРИМАЙ УКРАЇНУ ПІД ЧАС ВІЙНИ</h1>
+            <h1 class="leader"><fmt:message key="slogan.supportUkraine"/></h1>
             <p>SUPPORT | UKRAINE</p>
             <p class="lead">
-                <a class="btn btn-success btn-lg" href="#" role="button"> <i class="fa fa-dollar fa-1x"></i>ПРИЄДНАТИСЯ</a><br/>
+                <a class="btn btn-success btn-lg" href="#" role="button"> <fmt:message key="slogan.join"/></a><br/>
                 <a class="btn btn-lg" href="?lang=UA" role="button">UA</a>
                 <a class="btn btn-lg" href="?lang=EN" role="button">EN</a>
-<%--                <a href="?lang=UA"><span class="glyphicon glyphicon-user"></span> UA</a>&ndash;%&gt;--%>
-                <%--                    <a href="?lang=EN"><span class=""></span> EN</a>--%>
             </p>
         </div>
 
     </div>
 </div>
-
-<%--    <div class="jumbotron">--%>
-<%--        <div class="container">--%>
-<%--            <h1 class="display-3">Психология с Яндекс Весна</h1>--%>
-<%--            <p>--%>
-<%--                Служба Яндекс.Рефераты (ранее Яндекс.Весна) позволяет генерировать случайный текст на заданную тематику.--%>
-<%--                Импользуется для наполнения сайта контентом, что позволяет лучше оценить как он будет выглядеть в--%>
-<%--                будущем.--%>
-<%--            </p>--%>
-<%--            <p>--%>
-<%--                <a class="btn btn-primary btn-lg" href="https://yandex.ru/referats/" role="button">Яндекс.Рефераты</a>--%>
-<%--            </p>--%>
-<%--        </div>--%>
-<%--    </div>--%>
     <div class="container-fluid">
         <div class="row">
             <div id="admin-sidebar" class="col-md-2 p-x-0 p-y-3">
@@ -484,9 +307,6 @@
             </div>
 
             <div class="container">
-<%--                <h1>--%>
-<%--                    <fmt:message key="login.allAvailableCourses"/>--%>
-<%--                </h1>--%>
                 <h4 style="padding-top:10px"></h4>
                 <div class="row">
                     <c:forEach var="course" items="${forGuest}">

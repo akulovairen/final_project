@@ -91,7 +91,7 @@
                     <a href="adminCourseByTopicProgress?topic_id=${topic_id}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage}&sortingColumn=c.date_start&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
                 </c:otherwise>
             </c:choose></th>
-        <th><fmt:message key="login.durationInWeeks"/>
+        <th><fmt:message key="login.duration"/>
             <c:choose>
             <c:when test="${sortingMode eq 'DESC'}">
                 <a href="adminCourseByTopicProgress?topic_id=${topic_id}&recordsPerPage=${recordsPerPage}&currentPage=${currentPage}&sortingColumn=c.duration&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
@@ -172,74 +172,6 @@
     </c:otherwise>
     </c:choose>
 </div>
-<%--<div class="container">--%>
-<%--    <h1>Курси у прогресі</h1>--%>
-
-<%--    <div id="toolbar">--%>
-<%--    </div>--%>
-
-<%--    <table id="table"--%>
-<%--           data-toggle="table"--%>
-<%--           data-search="true"--%>
-<%--           data-filter-control="true"--%>
-<%--           data-show-export="true"--%>
-<%--           data-click-to-select="true"--%>
-<%--           data-toolbar="#toolbar"--%>
-<%--           class="table-responsive">--%>
-<%--        <thead>--%>
-<%--        <tr>--%>
-<%--            <th data-field="topic" data-filter-control="input" data-sortable="true">Тема</th>--%>
-<%--            <th data-field="name" data-filter-control="input" data-sortable="true">Назва</th>--%>
-<%--            <th data-field="dateStart" data-filter-control="input" data-sortable="true">Дата початку</th>--%>
-<%--            <th data-field="duration" data-filter-control="select" data-sortable="true">Тривалість</th>--%>
-<%--            <th data-field="teacher" data-filter-control="select" data-sortable="true">Викладач</th>--%>
-<%--            <th data-field="status" data-sortable="false">Статус</th>--%>
-<%--            <th data-field="edit" data-sortable="false">Редагувати</th>--%>
-<%--        </tr>--%>
-<%--        </thead>--%>
-<%--        <tbody>--%>
-<%--        <c:forEach var="course" items="${courseTopic}">--%>
-<%--            <tr>--%>
-<%--                <td><c:out value="${course.topic.name }"/></td>--%>
-<%--                <td><c:out value="${course.name }"/></td>--%>
-<%--                <td><c:out value="${course.dateStart }"/></td>--%>
-<%--                <td><c:out value="${course.duration }"/></td>--%>
-<%--                <td><c:out value="${course.teacher.surname} ${course.teacher.name}"/></td>--%>
-<%--                <td>--%>
-<%--                    <form id="status" action="/changeCourseStatus?status=finished&course_id=${course.id}" method="post">--%>
-<%--                        <input type="submit" value="Закінчити"/>--%>
-<%--                    </form>--%>
-<%--                </td>--%>
-<%--                <td><a id="edit"--%>
-<%--                       href="/editCourse?course_id=${course.id}">--%>
-<%--                    <button type="button">Редагувати</button>--%>
-<%--                </a></td>--%>
-<%--            </tr>--%>
-<%--        </c:forEach>--%>
-<%--        </tbody>--%>
-<%--    </table>--%>
-<%--</div>--%>
-
-<%--<script>--%>
-<%--    var $table = $('#table');--%>
-<%--    $(function () {--%>
-<%--        $('#toolbar').find('select').change(function () {--%>
-<%--            $table.bootstrapTable('refreshOptions', {--%>
-<%--                exportDataType: $(this).val()--%>
-<%--            });--%>
-<%--        });--%>
-<%--    })--%>
-
-<%--    var trBoldBlue = $("table");--%>
-
-<%--    $(trBoldBlue).on("click", "tr", function (){--%>
-<%--        $(this).toggleClass("bold-blue");--%>
-<%--    });--%>
-<%--</script>--%>
-
-
-<%--<input type="button" value="На головну" onclick="location.href='/adminPage'"/>--%>
-
 </body>
 </html>
 

@@ -42,7 +42,7 @@
                     <a href="gradebookStudent?sortingColumn=t.name&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
                 </c:otherwise>
             </c:choose></th>
-        <th>Назва курсу
+        <th><fmt:message key="login.name"/>
             <c:choose>
                 <c:when test="${sortingMode eq 'DESC'}">
                     <a href="gradebookStudent?sortingColumn=c.name&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
@@ -51,7 +51,7 @@
                     <a href="gradebookStudent?sortingColumn=c.name&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
                 </c:otherwise>
             </c:choose></th>
-        <th><fmt:message key="login.test"/>1
+        <th><fmt:message key="login.test"/> 1
             <c:choose>
                 <c:when test="${sortingMode eq 'DESC'}">
                     <a href="gradebookStudent?sortingColumn=g.test1&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
@@ -60,7 +60,7 @@
                     <a href="gradebookStudent?sortingColumn=g.test1&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
                 </c:otherwise>
             </c:choose></th>
-        <th><fmt:message key="login.test"/>2
+        <th><fmt:message key="login.test"/> 2
             <c:choose>
             <c:when test="${sortingMode eq 'DESC'}">
                 <a href="gradebookStudent?sortingColumn=g.test2&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
@@ -69,7 +69,7 @@
                 <a href="gradebookStudent?sortingColumn=g.test2&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
             </c:otherwise>
             </c:choose></th>
-        <th><fmt:message key="login.test"/>3
+        <th><fmt:message key="login.test"/> 3
             <c:choose>
                 <c:when test="${sortingMode eq 'DESC'}">
                     <a href="gradebookStudent?sortingColumn=g.test3&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
@@ -78,7 +78,7 @@
                     <a href="gradebookStudent?sortingColumn=g.test3&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
                 </c:otherwise>
             </c:choose></th>
-        <th><fmt:message key="login.test"/>4
+        <th><fmt:message key="login.test"/> 4
             <c:choose>
             <c:when test="${sortingMode eq 'DESC'}">
                 <a href="gradebookStudent?sortingColumn=g.test4&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>

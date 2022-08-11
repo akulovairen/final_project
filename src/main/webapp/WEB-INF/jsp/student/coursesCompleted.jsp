@@ -233,78 +233,6 @@
             text-align:center;
             margin: 0 auto;
         }
-
-        /**********************
-		navtabs
-**********************/
-        .tab-content {padding:20px;max-height:1000px;}
-        /*.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link*/
-        /*{*/
-        /*    border-color:#00BCD4 #fff #00BCD4;*/
-        /*}*/
-        .tab-content .card-block
-        {
-            padding:5px;
-        }
-        .tab-content .list-group-item
-        {
-            border:0px solid white;
-
-        }
-        .tab-content .list-group-item h5
-        {
-            color:#057e8e;
-        }
-        .tab-content .list-group-item .mb-1  {
-            font-size:15px;
-        }
-        /**********************
-		Left nav
-**********************/
-        span
-        {
-            font-size:10px;
-            float:right;
-            background-color:#F4F7F9;
-            border-radius:10px;
-            padding:3px 8px;
-            color:#84919B;
-        }
-        .lower-case
-        {
-            color:#84919B;
-            font-size:12px;
-            text-align:center;
-        }
-
-        /**********************
-                Left nav
-        **********************/
-
-        /**********************
-                footer-container-fluid
-        **********************/
-
-        #footer-container-fluid  li
-        {
-            list-style-type:none;
-            color:#098c9c;
-            font-size:10px;
-        }
-
-        #footer-container-fluid ul .title
-        {
-            color:black;
-            font-size:15px;
-        }
-
-        #footer-container-fluid ul .address
-        {
-            color:#607d8bad;
-        }
-        /**********************
-                footer-container-fluid
-        **********************/
     </style>
 
 </head>
@@ -315,10 +243,10 @@
 <div class="container-fluid" id="banner-container-fluid">
     <div class="container">
         <div class="jumbotron">
-            <h1 class="leader">ПІДТРИМАЙ УКРАЇНУ ПІД ЧАС ВІЙНИ</h1>
+            <h1 class="leader"><fmt:message key="slogan.supportUkraine"/></h1>
             <p>SUPPORT | UKRAINE</p>
             <p class="lead">
-                <a class="btn btn-success btn-lg" href="/coursesInProgress" role="button">Повернутися</a><br/>
+                <a class="btn btn-success btn-lg" href="/coursesInProgress" role="button"><fmt:message key="login.back"/></a><br/>
             </p>
         </div>
     </div>
@@ -326,7 +254,7 @@
 <div id="admin-sidebar" class="col-md-2 p-x-0 p-y-3">
     <ul class="sidenav admin-sidenav list-unstyled">
         <li><a href="/coursesAvailable"><fmt:message key="login.availableCourse"/></a></li>
-        <li><a href="/courseRegister">Register</a></li>
+        <li><a href="/courseRegister"><fmt:message key="login.registerCourse"/></a></li>
         <li><a href="/coursesCompleted"><fmt:message key="login.completedCourse"/> </a></li>
         <li><a href="/gradebookStudent"><fmt:message key="login.gradebook"/> </a></li>
     </ul>
@@ -343,7 +271,6 @@
             <h5 style="color: red"><fmt:message key="course.notFound"/></h5>
         </c:when>
         <c:otherwise>
-        <!-- PLANS STARTS -->
         <div class="row mrt-40">
             <c:forEach var="course" items="${finished}">
                 <div class="price-plan">
@@ -352,18 +279,9 @@
                             <i class="fas fa-calendar-times"></i> <fmt:message key="login.dataStart"/>: ${course.dateStart}<br/>
                             <i class="fas fa-arrow-up"></i> <fmt:message key="login.durationInWeeks"/>: ${course.duration}<br/>
                             <i class="fas fa-user"></i> <fmt:message key="login.teacher"/>: ${course.teacher.surname} ${course.teacher.name}
-
-                                <%--                        <li><i class="fa-calendar-times"></i> Початок <c:out value="${course.dateStart}"/></li>--%>
-                                <%--                        <li>${course.duration} тижнів </li>--%>
-                                <%--                        <li>Викладач <c:out value="${course.teacher.surname} ${course.teacher.name}"/></li>--%>
                         </ul>
                     </div>
                     <div class="plan-features">
-                            <%--                    <ul>--%>
-                            <%--                        <li>Початок <c:out value="${course.dateStart}"/></li>--%>
-                            <%--                        <li>${course.duration} тижнів </li>--%>
-                            <%--                        <li>Викладач <c:out value="${course.teacher.surname} ${course.teacher.name}"/></li>--%>
-                            <%--                    </ul>--%>
                         <em><h3 class="section-title ">${course.name}</h3></em>
                         <p>${course.description}</p>
                     </div>
@@ -378,27 +296,5 @@
     </div>
 </section>
 </div>
-
-<%--<h2>--%>
-<%--    Закінчені курси--%>
-<%--</h2>--%>
-
-<%--    <c:choose>--%>
-<%--        <c:when test="${finished == null || finished.isEmpty()}">--%>
-<%--            Завершенных курсов не найдено--%>
-<%--        </c:when>--%>
-<%--        <c:otherwise>--%>
-
-<%--    <c:forEach items="${finished}" var="entry">--%>
-<%--        Topic : <c:out value="${entry.key}"/> <br/>--%>
-<%--        <c:forEach items="${entry.value}" var="it">--%>
-<%--            <a href="/coursesDescription?course_id=${it.id}"><c:out value="${it.name }"/></a><br/>--%>
-<%--        </c:forEach>--%>
-<%--    </c:forEach>--%>
-
-<%--        </c:otherwise>--%>
-<%--    </c:choose>--%>
-
-<%--    <input type="button" value="На головну" onclick="location.href='/coursesInProgress'"/>--%>
 </body>
 </html>

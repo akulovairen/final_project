@@ -75,66 +75,72 @@
 <br/>
 <div class="container">
     <h3><fmt:message key="login.courseInProgress"/></h3>
-<table class="table table-bordered table-hover">
-<thead thead-ligh>
-<tr>
-    <th><fmt:message key="login.topic"/>
+    <table class="table table-bordered table-hover">
+        <thead thead-ligh>
+        <tr>
+            <th><fmt:message key="login.topic"/>
+                <c:choose>
+                    <c:when test="${sortingMode eq 'DESC'}">
+                        <a href="adminCoursesList?sortingColumn=t.name&sortingMode=ASC"><i
+                                class="fa fa-sort-up"></i></a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="adminCoursesList?sortingColumn=t.name&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
+                    </c:otherwise>
+                </c:choose>
+            </th>
+            <th><fmt:message key="login.name"/>
+                <c:choose>
+                    <c:when test="${sortingMode eq 'DESC'}">
+                        <a href="adminCoursesList?sortingColumn=c.name&sortingMode=ASC"><i
+                                class="fa fa-sort-up"></i></a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="adminCoursesList?sortingColumn=c.name&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
+                    </c:otherwise>
+                </c:choose></th>
+            <th><fmt:message key="login.dataStart"/>
+                <c:choose>
+                    <c:when test="${sortingMode eq 'DESC'}">
+                        <a href="adminCoursesList?sortingColumn=c.date_start&sortingMode=ASC"><i
+                                class="fa fa-sort-up"></i></a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="adminCoursesList?sortingColumn=c.date_start&sortingMode=DESC"><i
+                                class="fa fa-sort-down"></i></a>
+                    </c:otherwise>
+                </c:choose></th>
+            <th><fmt:message key="login.duration"/>
+                <c:choose>
+                    <c:when test="${sortingMode eq 'DESC'}">
+                        <a href="adminCoursesList?sortingColumn=c.duration&sortingMode=ASC"><i
+                                class="fa fa-sort-up"></i></a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="adminCoursesList?sortingColumn=c.duration&sortingMode=DESC"><i
+                                class="fa fa-sort-down"></i></a>
+                    </c:otherwise>
+                </c:choose></th>
+            <th><fmt:message key="login.teacher"/>
+                <c:choose>
+                    <c:when test="${sortingMode eq 'DESC'}">
+                        <a href="adminCoursesList?sortingColumn=u.surname&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="adminCoursesList?sortingColumn=u.surname&sortingMode=DESC"><i
+                                class="fa fa-sort-down"></i></a>
+                    </c:otherwise>
+                </c:choose></th>
+            <th><fmt:message key="course.status"/></th>
+            <th><fmt:message key="login.edit"/></th>
+        </tr>
+        </thead>
+        <tbody>
         <c:choose>
-            <c:when test="${sortingMode eq 'DESC'}">
-                <a href="adminCoursesList?sortingColumn=t.name&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
-            </c:when>
-            <c:otherwise>
-                <a href="adminCoursesList?sortingColumn=t.name&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
-            </c:otherwise>
-        </c:choose>
-    </th>
-    <th><fmt:message key="login.name"/>
-        <c:choose>
-            <c:when test="${sortingMode eq 'DESC'}">
-                <a href="adminCoursesList?sortingColumn=c.name&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
-            </c:when>
-            <c:otherwise>
-                <a href="adminCoursesList?sortingColumn=c.name&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
-            </c:otherwise>
-        </c:choose></th>
-    <th><fmt:message key="login.dataStart"/>
-        <c:choose>
-            <c:when test="${sortingMode eq 'DESC'}">
-                <a href="adminCoursesList?sortingColumn=c.date_start&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
-            </c:when>
-            <c:otherwise>
-                <a href="adminCoursesList?sortingColumn=c.date_start&sortingMode=DESC"><i
-                        class="fa fa-sort-down"></i></a>
-            </c:otherwise>
-        </c:choose></th>
-    <th><fmt:message key="login.durationInWeeks"/>
-        <c:choose>
-            <c:when test="${sortingMode eq 'DESC'}">
-                <a href="adminCoursesList?sortingColumn=c.duration&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
-            </c:when>
-            <c:otherwise>
-                <a href="adminCoursesList?sortingColumn=c.duration&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
-            </c:otherwise>
-        </c:choose></th>
-    <th><fmt:message key="login.teacher"/>
-        <c:choose>
-            <c:when test="${sortingMode eq 'DESC'}">
-                <a href="adminCoursesList?sortingColumn=u.surname&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
-            </c:when>
-            <c:otherwise>
-                <a href="adminCoursesList?sortingColumn=u.surname&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
-            </c:otherwise>
-        </c:choose></th>
-    <th><fmt:message key="course.status"/></th>
-    <th><fmt:message key="login.edit"/></th>
-</tr>
-</thead>
-<tbody>
-<c:choose>
-    <c:when test="${progress == null || progress.isEmpty()}"><br/>
-        <h5 style="color: red"><fmt:message key="course.notFound"/></h5>
-    </c:when>
-    <c:otherwise><br/>
+        <c:when test="${progress == null || progress.isEmpty()}"><br/>
+            <h5 style="color: red"><fmt:message key="course.notFound"/></h5>
+        </c:when>
+        <c:otherwise><br/>
         <c:forEach var="course" items="${progress}">
             <tr>
                 <td><c:out value="${course.topic.name }"/></td>
@@ -155,39 +161,41 @@
             </tr>
         </c:forEach>
         </tbody>
-        </table>
-        <nav aria-label="Navigation for countries">
+    </table>
+    <nav aria-label="Navigation for countries">
         <ul class="pagination">
-        <c:if test="${currentPage != 1}">
-            <li class="page-item"><a class="page-link"
-                                     href="adminCoursesList?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}"><fmt:message key="pagin.previous"/></a>
-            </li>
-        </c:if>
+            <c:if test="${currentPage != 1}">
+                <li class="page-item"><a class="page-link"
+                                         href="adminCoursesList?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}"><fmt:message
+                        key="pagin.previous"/></a>
+                </li>
+            </c:if>
 
-        <c:forEach begin="1" end="${noOfPages}" var="i">
-            <c:choose>
-                <c:when test="${currentPage eq i}">
-                    <li class="page-item active"><a class="page-link">
-                            ${i} <span class="sr-only">(current)</span></a>
-                    </li>
-                </c:when>
-                <c:otherwise>
-                    <li class="page-item"><a class="page-link"
-                                             href="adminCoursesList?recordsPerPage=${recordsPerPage}&currentPage=${i}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}">${i}</a>
-                    </li>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
+            <c:forEach begin="1" end="${noOfPages}" var="i">
+                <c:choose>
+                    <c:when test="${currentPage eq i}">
+                        <li class="page-item active"><a class="page-link">
+                                ${i} <span class="sr-only">(current)</span></a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item"><a class="page-link"
+                                                 href="adminCoursesList?recordsPerPage=${recordsPerPage}&currentPage=${i}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}">${i}</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
 
-        <c:if test="${currentPage lt noOfPages}">
-            <li class="page-item"><a class="page-link"
-                                     href="adminCoursesList?recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}"><fmt:message key="pagin.next"/></a>
-            </li>
-        </c:if>
+            <c:if test="${currentPage lt noOfPages}">
+                <li class="page-item"><a class="page-link"
+                                         href="adminCoursesList?recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}"><fmt:message
+                        key="pagin.next"/></a>
+                </li>
+            </c:if>
         </ul>
-        </nav>
+    </nav>
     </c:otherwise>
     </c:choose>
 </div>
-        </body>
-        </html>
+</body>
+</html>

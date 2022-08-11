@@ -108,7 +108,6 @@
         <dt class="col-sm-3"><fmt:message key="login.durationInWeeks"/> </dt>
         <dd class="col-sm-9">
             <p>${course.duration}</p>
-            <%--        <p>Donec id elit non mi porta gravida at eget metus.</p>--%>
         </dd>
 
         <dt class="col-sm-3"><fmt:message key="login.teacher"/></dt>
@@ -117,100 +116,32 @@
         <dt class="col-sm-3"><fmt:message key="login.description"/></dt>
         <dd class="col-sm-9"><p>${course.description}</p></dd>
         <div class="panel-body">
-<%--            <p>${course.description}</p>--%>
         <dt class="col-sm-3">  </dt>
         <dd class="col-sm-9"><a class="link-color">Save Ukraine | Save People</a><br/></dd>
-<%--            <a class="link-color">Save Ukraine | Save People</a><br/>--%>
         </div>
     </div>
 </div>
-
-<%--    <div class="container">--%>
-<%--        <div class="row">--%>
-<%--            <div class="col-md-8 mx-auto wow fadeInUp">--%>
-<%--                <h3 class="text-center font-weight-bold">${course.name}</h3>--%>
-<%--                <p class=" text-center">${course.topic.name}</p>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <div class="row">--%>
-<%--            <div class="col-sm-6 col-md-4 col-lg-6 mt-4">--%>
-<%--                <div class="my-right-text wow fadeInUp">--%>
-
-<%--                    <p class="text-justify font-italic"> <fmt:message key="login.dataStart"/>: ${course.dateStart}</p>--%>
-<%--                    <p class="text-justify font-italic"> <fmt:message key="login.durationInWeeks"/>: ${course.duration}</p>--%>
-<%--                    <p class="text-justify font-italic"> <fmt:message key="login.teacher"/>: ${course.teacher.surname} ${course.teacher.name}</p>--%>
-<%--                    <p class="text-justify font-italic"> <fmt:message key="login.countStudent"/>: ${countStudent}</p>--%>
-<%--                    <p class="text-justify font-italic"> <fmt:message key="login.description"/>: ${course.description}</p>--%>
-<%--                    <a class="link-color">Save Ukraine | Save People</a><br/>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
-<%--<div class="container">--%>
-<%--<div class="row">--%>
-<%--    <dt class="col-sm-3"><fmt:message key="login.dataStart"/></dt>--%>
-<%--    <dd class="col-sm-9">${course.dateStart}</dd>--%>
-
-<%--    <dt class="col-sm-3"><fmt:message key="login.durationInWeeks"/> </dt>--%>
-<%--    <dd class="col-sm-9">--%>
-<%--        <p>${course.duration}</p>--%>
-<%--&lt;%&ndash;        <p>Donec id elit non mi porta gravida at eget metus.</p>&ndash;%&gt;--%>
-<%--    </dd>--%>
-
-<%--    <dt class="col-sm-3"><fmt:message key="login.teacher"/></dt>--%>
-<%--    <dd class="col-sm-9">${course.teacher.surname} ${course.teacher.name}</dd>--%>
-
-<%--    <dt class="col-sm-3 text-truncate"><fmt:message key="login.description"/></dt>--%>
-<%--    <dd class="col-sm-9">${course.description}</dd>--%>
-
-<%--&lt;%&ndash;    <dt class="col-sm-3">Nesting</dt>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    <dd class="col-sm-9">&ndash;%&gt;--%>
-<%--&lt;%&ndash;        <dl class="row">&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <dt class="col-sm-4">Nested definition list</dt>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        </dl>&ndash;%&gt;--%>
-<%--&lt;%&ndash;    </dd>&ndash;%&gt;--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--<h2>--%>
-<%--    Course--%>
-<%--</h2>--%>
-<%--<main>--%>
-<%--    <article>--%>
-<%--        <p>Название: <c:out value="${course.name}"/></p>--%>
-<%--            Дата начала: <c:out value="${course.dateStart}"/><br>--%>
-<%--            Длительность: <c:out value="${course.duration}"/><br>--%>
-<%--            Описание: <c:out value="${course.description}"/><br>--%>
-<%--            Преподователь: <c:out value="${course.teacher.surname} ${course.teacher.name}"/><br>--%>
-<%--            Кількіть студентів звреєстрованих на курс: ${countStudent}<br></p>--%>
-<%--        <section>--%>
-<%--            <p>здесь могут быть похожие записи, слайдер, баннеры, миниатюры и т.д...</p>--%>
-<%--        </section>--%>
-<%--    </article>--%>
-<%--</main>--%>
 
 <div class="container">
     <hr>
     <div class="row">
         <div class="panel panel-primary filterable">
             <div class="panel-heading">
-                <h3 class="panel-title">Журнал успішності студентів</h3>
+                <h3 class="panel-title"><fmt:message key="gradebook.students"/></h3>
                 <div class="pull-right">
-                    <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+                    <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> <fmt:message key="button.filter"/></button>
                 </div>
             </div>
             <table class="table">
                 <thead>
                 <tr class="filters">
-                    <th><input type="text" class="form-control" placeholder="First Name" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Last Name" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Test1" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Test2" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Test3" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Test4" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="TotalScore" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="<fmt:message key="login.surname"/>" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="<fmt:message key="login.nameUser"/>" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="<fmt:message key="login.test"/> 1" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="<fmt:message key="login.test"/> 2" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="<fmt:message key="login.test"/> 3" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="<fmt:message key="login.test"/> 4" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="<fmt:message key="login.totalScore"/>" disabled></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -230,64 +161,5 @@
         </div>
     </div>
 </div>
-
-<%--        <h2>--%>
-<%--            Журнал по курсу--%>
-<%--        </h2>--%>
-<%--<table class="table table-bordered">--%>
-<%--    <thead>--%>
-<%--    <tr>--%>
-<%--        <th>Тема</th>--%>
-<%--        <th>Тест 1</th>--%>
-<%--        <th>Тест 2</th>--%>
-<%--        <th>Тест 3</th>--%>
-<%--        <th>Тест 4</th>--%>
-<%--        <th>Загальний бал</th>--%>
-<%--    </tr>--%>
-<%--    </thead>--%>
-<%--    <tbody>--%>
-<%--    <c:forEach items="${courseGradebook}" var="entry">--%>
-<%--        <tr>--%>
-<%--            <td><c:out value="${entry.student.name} ${entry.student.surname}"/></td>--%>
-<%--            <td>${entry.test1}</td>--%>
-<%--            <td>${entry.test2}</td>--%>
-<%--            <td>${entry.test3}</td>--%>
-<%--            <td>${entry.test4}</td>--%>
-<%--            <td>${entry.totalScore}</td>--%>
-<%--        </tr>--%>
-<%--    </c:forEach>--%>
-<%--    </tbody>--%>
-<%--</table>--%>
-<%--        <table>--%>
-<%--            <thead>--%>
-<%--            <tr>--%>
-<%--                <th>student</th>--%>
-<%--                <th>test1</th>--%>
-<%--                <th>test2</th>--%>
-<%--                <th>test3</th>--%>
-<%--                <th>test4</th>--%>
-<%--                <th>totalScore</th>--%>
-<%--            </tr>--%>
-<%--            </thead>--%>
-<%--            <tbody>--%>
-<%--&lt;%&ndash;            FOREACH HERE&ndash;%&gt;--%>
-<%--            <c:forEach items="${courseGradebook}" var="entry">--%>
-<%--            <tr>--%>
-<%--&lt;%&ndash;                TODO: join users table in SQL query and print entry.student.name here&ndash;%&gt;--%>
-<%--                <td><c:out value="${entry.student.name} ${entry.student.surname}"/></td>--%>
-<%--                <td>${entry.test1}</td>--%>
-<%--                <td>${entry.test2}</td>--%>
-<%--                <td>${entry.test3}</td>--%>
-<%--                <td>${entry.test4}</td>--%>
-<%--                <td>${entry.totalScore}</td>--%>
-<%--            </tr>--%>
-<%--            </c:forEach>--%>
-<%--            </tbody>--%>
-<%--        </table>--%>
-
-
-
-<input type="button" value="Назад" onclick="window.history.back()"/>
-
 </body>
 </html>

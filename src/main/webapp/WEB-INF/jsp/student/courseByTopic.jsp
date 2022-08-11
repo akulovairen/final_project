@@ -127,89 +127,6 @@
             text-align: center;
         }
 
-        /**********************
-               color-graph
-       **********************/
-        .colorgraph {
-            width: 80%;
-            text-align: center;
-            margin: 0 auto;
-        }
-
-        /**********************
-		navtabs
-**********************/
-        .tab-content {
-            padding: 20px;
-            max-height: 1000px;
-        }
-
-        /*.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link*/
-        /*{*/
-        /*    border-color:#00BCD4 #fff #00BCD4;*/
-        /*}*/
-        .tab-content .card-block {
-            padding: 5px;
-        }
-
-        .tab-content .list-group-item {
-            border: 0px solid white;
-
-        }
-
-        .tab-content .list-group-item h5 {
-            color: #057e8e;
-        }
-
-        .tab-content .list-group-item .mb-1 {
-            font-size: 15px;
-        }
-
-        /**********************
-		Left nav
-**********************/
-        span {
-            font-size: 10px;
-            float: right;
-            background-color: #F4F7F9;
-            border-radius: 10px;
-            padding: 3px 8px;
-            color: #84919B;
-        }
-
-        .lower-case {
-            color: #84919B;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        /**********************
-                Left nav
-        **********************/
-
-
-        /**********************
-                footer-container-fluid
-        **********************/
-
-        #footer-container-fluid li {
-            list-style-type: none;
-            color: #098c9c;
-            font-size: 10px;
-        }
-
-        #footer-container-fluid ul .title {
-            color: black;
-            font-size: 15px;
-        }
-
-        #footer-container-fluid ul .address {
-            color: #607d8bad;
-        }
-
-        /**********************
-                footer-container-fluid
-        **********************/
     </style>
     <style rel="css">
         .demo2 {
@@ -346,15 +263,16 @@
 
 </head>
 <body>
+
 <navbar:NavStudent/>
 
 <div class="container-fluid" id="banner-container-fluid">
     <div class="container">
         <div class="jumbotron">
-            <h1 class="leader">ПІДТРИМАЙ УКРАЇНУ ПІД ЧАС ВІЙНИ</h1>
+            <h1 class="leader"><fmt:message key="slogan.supportUkraine"/></h1>
             <p>SUPPORT | UKRAINE</p>
             <p class="lead">
-                <a class="btn btn-success btn-lg" href="/coursesInProgress" role="button">Повернутися</a><br/>
+                <a class="btn btn-success btn-lg" href="/coursesInProgress" role="button"><fmt:message key="login.back"/> </a><br/>
             </p>
         </div>
     </div>
@@ -368,32 +286,41 @@
                 </c:forEach>
             </ul>
         </div>
-        <div class="container">
-            <h4 style="padding-top:10px"></h4>
-            <div class="row">
-                <c:forEach var="course" items="${available}">
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="pricingTable2">
-                            <div class="pricingTable-header">
-                                <h2 class="title">${course.name}</h2>
-                                <div class="price-value">${course.topic.name}</div>
-                            </div>
-                            <ul class="pricing-content">
-                                <li><i class="fa fa-check"></i> <fmt:message key="login.start"/> ${course.dateStart}
-                                </li>
-                                <li><i class="fa fa-check"></i> <fmt:message
-                                        key="login.durationInWeeks"/>: ${course.duration}</li>
-                                <li><i class="fa fa-check"></i> <fmt:message
-                                        key="login.teacher"/>: ${course.teacher.surname} ${course.teacher.name}</li>
+        <c:choose>
+            <c:when test="${available == null || available.isEmpty()}"><br/>
+                <h3 style="color: red"><fmt:message key="course.notFound"/></h3>
+            </c:when>
+            <c:otherwise>
+                <div class="container">
+                    <h4 style="padding-top:10px"></h4>
+                    <div class="row">
+                        <c:forEach var="course" items="${available}">
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="pricingTable2">
+                                    <div class="pricingTable-header">
+                                        <h2 class="title">${course.name}</h2>
+                                        <div class="price-value">${course.topic.name}</div>
+                                    </div>
+                                    <ul class="pricing-content">
+                                        <li><i class="fa fa-check"></i> <fmt:message
+                                                key="login.start"/> ${course.dateStart}
+                                        </li>
+                                        <li><i class="fa fa-check"></i> <fmt:message
+                                                key="login.durationInWeeks"/>: ${course.duration}</li>
+                                        <li><i class="fa fa-check"></i> <fmt:message
+                                                key="login.teacher"/>: ${course.teacher.surname} ${course.teacher.name}
+                                        </li>
 
-                            </ul>
-                            <a href="/coursesDescription?course_id=${course.id}"
-                               class="pricingTable-signup"><fmt:message key="login.more"/></a>
-                        </div>
+                                    </ul>
+                                    <a href="/coursesDescription?course_id=${course.id}"
+                                       class="pricingTable-signup"><fmt:message key="login.more"/></a>
+                                </div>
+                            </div>
+                        </c:forEach>
                     </div>
-                </c:forEach>
-            </div>
-        </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </div>
 </div>
 </body>

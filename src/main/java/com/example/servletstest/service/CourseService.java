@@ -247,13 +247,11 @@ public class CourseService {
      *
      * @param id - teacher id
      * @param status - course status
-     * @param limit
-     * @param offset
      * @return {@link List<CourseDto>} with sorting by name
      */
-    public List<CourseDto> findCourseByTeacher(int id, String status, int limit, int offset) {
+    public List<CourseDto> findCourseByTeacher(int id, String status) {
         log.info("Getting courses for teacher by id={} and status={}", id, status);
-        List<Course> courseByTeacher = courseDao.findCourseByTeacher(id, status, limit, offset);
+        List<Course> courseByTeacher = courseDao.findCourseByTeacher(id, status);
         List<CourseDto> courseDtoList = courseByTeacher.stream().map(course -> {
             CourseDto courseDto = new CourseDto();
             courseDto.setId(course.getId());

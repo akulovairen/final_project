@@ -60,11 +60,6 @@ public class AvailableListCourseForAdminServlet extends HttpServlet {
         List<Topic> allTopic = topicService.getAllTopic();
         req.setAttribute("allTopic", allTopic);
 
-//        int topicId = Integer.parseInt(req.getParameter("topic_id"));
-
-//        List<Course> coursesByTopicAndAvailable = courseService.findCoursesByTopicAndStatus(topicId,"available");
-//        req.setAttribute("courseTopic", coursesByTopicAndAvailable);
-
         List<Course> availableStatus = courseService.findCourseStatus("available" ,recordsPerPage, offset, sortingColumn, sortingMode);
         req.setAttribute("available", availableStatus);
 

@@ -28,8 +28,6 @@ public class LoginServlet extends HttpServlet {
     private final UserAuthenticationService authenticationService=new UserAuthenticationService();
     private UsersDao usersDao=new UsersDao();
     private final UserService usersService=new UserService(usersDao);
-//    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-//    Validator validator = factory.getValidator();
     Logger log= LogManager.getLogger(this);
 
     /**
@@ -86,7 +84,7 @@ public class LoginServlet extends HttpServlet {
             User user = usersService.getUserByEmail(email);
             Boolean locked = user.getLocked();
             if(locked){
-                messagesMap.put("authenticationError", "Ви заблоковані");
+                messagesMap.put("authenticationError",LocalizedValidatorUtil.getLocalizationValue("Ви заблоковані",locale));
                 request.getSession().setAttribute("messagesMap", messagesMap);
                 RequestUtils.restoreFormValues(request);
                 response.sendRedirect("/login");
@@ -111,7 +109,7 @@ public class LoginServlet extends HttpServlet {
                     break;
             }
         } else {
-            messagesMap.put("authenticationError", "Невірні данні. Перевірте логін або пароль");
+            messagesMap.put("authenticationError", LocalizedValidatorUtil.getLocalizationValue("login.emailPassword.invalid", locale));
             request.getSession().setAttribute("messagesMap", messagesMap);
             RequestUtils.restoreFormValues(request);
             response.sendRedirect("/login");

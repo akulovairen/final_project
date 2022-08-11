@@ -33,41 +33,11 @@ public class TeacherPageServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String currentPageParam = request.getParameter("currentPage");
-        int currentPage = currentPageParam == null ? 1 : Integer.parseInt(currentPageParam);
-        String recordsPerPageParam = request.getParameter("recordsPerPage");
-        int recordsPerPage = recordsPerPageParam == null ? 10 : Integer.parseInt(recordsPerPageParam);
-        int offset = currentPage * recordsPerPage - recordsPerPage;
-
-        String sortingColumn = request.getParameter("sortingColumn");
-        sortingColumn = sortingColumn == null ? "c.name" : sortingColumn;
-        String sortingMode = request.getParameter("sortingMode");
-        sortingMode = sortingMode == null ? "ASC" : sortingMode;
 
         int teacherId = (int) request.getSession().getAttribute("user_id");
-        int rows = courseService.getNumberOfRowsTeacher(CourseDao.SQLTask.GET_COURSE_BY_TEACHER_AVAILABLE_COUNT.getQUERY(), teacherId);
 
-        int nOfPages = rows / recordsPerPage;
-        if (nOfPages % recordsPerPage > 0) {
-            nOfPages++;
-        }
-
-        request.setAttribute("sortingColumn", sortingColumn);
-        request.setAttribute("sortingMode", sortingMode);
-
-        request.setAttribute("noOfPages", nOfPages);
-        request.setAttribute("currentPage", currentPage);
-        request.setAttribute("recordsPerPage", recordsPerPage);
-
-        List<CourseDto> courseTeacher = courseService.findCourseByTeacher(teacherId,"progress",recordsPerPage,offset);
+        List<CourseDto> courseTeacher = courseService.findCourseByTeacher(teacherId,"progress");
         request.setAttribute("courseTeacher",courseTeacher);
-
-
-        List<Course> courseProgress = courseService.findCourseNotFinished(teacherId,recordsPerPage,offset );
-        request.setAttribute("courseProgress", courseProgress);
-
-//        int countStudent = courseUserService.countStudent(courseId);
-//        request.setAttribute("countStudent",countStudent);
 
         request.getRequestDispatcher("/WEB-INF/jsp/teacher/teacherPage.jsp").forward(request, response);
     }

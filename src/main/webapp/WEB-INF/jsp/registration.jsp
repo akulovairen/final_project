@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="true" %>
 <fmt:setLocale value="${language}"/>
-<fmt:setBundle basename="i18n.login"/>
+<fmt:setBundle basename="localization"/>
 <html>
 <head>
     <title>Registration</title>
@@ -52,10 +52,8 @@
     <div class="container">
         <nav class="navbar navbar-expand-sm  navbar-dark">
             <!-- Brand -->
-            <a class="navbar-brand" href="#">HelpInWartime</a>
-            <%--                <img src="bird.jpg" alt="Logo" style="width:40px;">--%>
+            <a class="navbar-brand" href="#">Help In Wartime</a>
 
-            <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>

@@ -1,5 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html><%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page session="true" %>
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="localization"/>
 <%@ taglib prefix="navbar" tagdir="/WEB-INF/tags" %>
 <html>
 <head>
@@ -9,7 +13,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -83,31 +86,18 @@
                     };
 
                     gradebook.push(object);
-
-
                 }
-
                 let courseId = new URLSearchParams(window.location.search).get("course_id");
 
                 let requestBody = {
                     "course_id": courseId,
                     "data": gradebook
                 };
-
-
-                // TODO:Убрать ошибку!
-
                 let xhr = new XMLHttpRequest();
                 xhr.open("POST", '/teacherGradebookByCourse', true);
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.onreadystatechange = function () {//Вызывает функцию при смене состояния.
                     if (xhr.readyState == XMLHttpRequest.DONE || xhr.status == 200 || xhr.status == 201) {
-                        // if (xhr.status == 200 || xhr.status == 201) {
-                        //     console.log('request has been submitted');
-                        // } else {
-                        //     console.log('error during gradebook update. readyState = ' + xhr.readyState);
-                        //     alert('Ошибка');
-                        // }
                         location.href = '/teacherGradebookByCourse?course_id=' + courseId;
                     }
                 }
@@ -122,102 +112,106 @@
 <body>
 
 <navbar:NavTeacher/>
+<div class="container">
+    <div style="text-align: center;">
+        <caption class=".caption-top"><fmt:message key="gradebook.byCourse"/> ${course.name}</caption>
+        <br/>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="<fmt:message key="gradebook.search"/>">
+    </div>
 
-<div style="text-align: center;">
-    <caption class=".caption-top">Журнал успеваемости по курсу</caption>
-    <br/>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for students...">
-</div>
-
-<table id="students_list" class="table table-striped caption-top">
-    <thead class="table-light">
-    <tr>
-        <th>Студент</th>
-        <th>Тест 1</th>
-        <th>Тест 2</th>
-        <th>Тест 3</th>
-        <th>Тест 4</th>
-        <th>Действие</th>
-    </tr>
-    </thead>
-    <tbody id="students_list_tbody">
-
-    <c:forEach var="course" items="${courseGradebook}">
-        <tr id="st${course.student.id}">
-            <td><c:out value="${course.student.surname} ${course.student.name}"/></td>
-            <td><input type="number"  min=0 max=5
-                    <c:choose>
-                        <c:when test="${restoredValues.test1 != null}">
-                            value="${restoredValues.test1}"
-                        </c:when>
-                        <c:otherwise>
-                            value="${course.test1}"
-                        </c:otherwise>
-                    </c:choose>
-            />
-                <c:if test="${not empty messagesMap.test1}"><div style="color: red">${messagesMap.test1}</div></c:if></td>
-            <td><input type="number" min=0 max=5
-                    <c:choose>
-                        <c:when test="${restoredValues.test2 != null}">
-                            value="${restoredValues.test2}"
-                        </c:when>
-                        <c:otherwise>
-                            value="${course.test2}"
-                        </c:otherwise>
-                    </c:choose>
-            />
-                <c:if test="${not empty messagesMap.test2}"><div style="color: red">${messagesMap.test2}</div></c:if></td>
-            <td><input type="number" min=0 max=5
-                    <c:choose>
-                        <c:when test="${restoredValues.test3 != null}">
-                            value="${restoredValues.test3}"
-                        </c:when>
-                        <c:otherwise>
-                            value="${course.test3}"
-                        </c:otherwise>
-                    </c:choose>
-            />
-                <c:if test="${not empty messagesMap.test3}"><div style="color: red">${messagesMap.test3}</div></c:if></td>
-            <td><input type="number" min=0 max=5
-                    <c:choose>
-                        <c:when test="${restoredValues.test4 != null}">
-                            value="${restoredValues.test4}"
-                        </c:when>
-                        <c:otherwise>
-                            value="${course.test4}"
-                        </c:otherwise>
-                    </c:choose>
-            />
-                <c:if test="${not empty messagesMap.test4}"><div style="color: red">${messagesMap.test4}</div></c:if></td>
-            <td>
-                <input id="gb" type="hidden" value="${course.id}">
-                <input type="button" name="addBtn" value="Обновить" onclick="addToTable2(${course.student.id})">
-            </td>
-
+    <table id="students_list" class="table table-striped caption-top">
+        <thead class="table-light">
+        <tr>
+            <th><fmt:message key="login.student"/> </th>
+            <th><fmt:message key="login.test"/> 1</th>
+            <th><fmt:message key="login.test"/> 2</th>
+            <th><fmt:message key="login.test"/> 3</th>
+            <th><fmt:message key="login.test"/> 4</th>
+            <th><fmt:message key="gradebook.action"/> </th>
         </tr>
-    </c:forEach>
+        </thead>
+        <tbody id="students_list_tbody">
 
-    </tbody>
-</table>
-</div>
-<div>
+        <c:forEach var="course" items="${courseGradebook}">
+            <tr id="st${course.student.id}">
+                <td><c:out value="${course.student.surname} ${course.student.name}"/></td>
+                <td><input type="number" min=0 max=5
+                        <c:choose>
+                            <c:when test="${restoredValues.test1 != null}">
+                                value="${restoredValues.test1}"
+                            </c:when>
+                            <c:otherwise>
+                                value="${course.test1}"
+                            </c:otherwise>
+                        </c:choose>
+                />
+                    <c:if test="${not empty messagesMap.test1}">
+                        <div style="color: red">${messagesMap.test1}</div>
+                    </c:if></td>
+                <td><input type="number" min=0 max=5
+                        <c:choose>
+                            <c:when test="${restoredValues.test2 != null}">
+                                value="${restoredValues.test2}"
+                            </c:when>
+                            <c:otherwise>
+                                value="${course.test2}"
+                            </c:otherwise>
+                        </c:choose>
+                />
+                    <c:if test="${not empty messagesMap.test2}">
+                        <div style="color: red">${messagesMap.test2}</div>
+                    </c:if></td>
+                <td><input type="number" min=0 max=5
+                        <c:choose>
+                            <c:when test="${restoredValues.test3 != null}">
+                                value="${restoredValues.test3}"
+                            </c:when>
+                            <c:otherwise>
+                                value="${course.test3}"
+                            </c:otherwise>
+                        </c:choose>
+                />
+                    <c:if test="${not empty messagesMap.test3}">
+                        <div style="color: red">${messagesMap.test3}</div>
+                    </c:if></td>
+                <td><input type="number" min=0 max=5
+                        <c:choose>
+                            <c:when test="${restoredValues.test4 != null}">
+                                value="${restoredValues.test4}"
+                            </c:when>
+                            <c:otherwise>
+                                value="${course.test4}"
+                            </c:otherwise>
+                        </c:choose>
+                />
+                    <c:if test="${not empty messagesMap.test4}">
+                        <div style="color: red">${messagesMap.test4}</div>
+                    </c:if></td>
+                <td>
+                    <input id="gb" type="hidden" value="${course.id}">
+                    <input type="button" name="addBtn" value="<fmt:message key="gradebook.update"/>" onclick="addToTable2(${course.student.id})">
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 
-    <caption>Студенты, оценки которых будут обновлены</caption>
+    <caption><fmt:message key="gradebook.students.updateGrades"/></caption>
     <table id="to_be_updated" class="table table-striped caption-top">
         <thead>
         <tr>
-            <th>Студент</th>
-            <th>Тест 1</th>
-            <th>Тест 2</th>
-            <th>Тест 3</th>
-            <th>Тест 4</th>
-            <th>Действие</th>
+            <th><fmt:message key="login.student"/></th>
+            <th><fmt:message key="login.test"/> 1</th>
+            <th><fmt:message key="login.test"/> 2</th>
+            <th><fmt:message key="login.test"/> 3</th>
+            <th><fmt:message key="login.test"/> 4</th>
+            <th><fmt:message key="gradebook.action"/></th>
         </tr>
         </thead>
         <tbody id="to_be_updated_tbody">
         </tbody>
     </table>
-    <button type="button" onclick="submitGradebook()">Обновить журнал</button>
+    <button type="button" onclick="submitGradebook()"><fmt:message key="gradebook.updateAll"/></button>
 </div>
 
 <script>

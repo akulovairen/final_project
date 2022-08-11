@@ -45,7 +45,8 @@
 
 <div class="container">
     <div class="btn-group dropright">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
             <fmt:message key="course.byStatus"/>
         </button>
         <div class="dropdown-menu">
@@ -56,16 +57,19 @@
     </div>
 
     <div class="btn-group dropright">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
             <fmt:message key="course.byTopic"/>
         </button>
         <div class="dropdown-menu">
             <c:forEach var="topic" items="${allTopic}">
-                <a class="dropdown-item" href="adminCourseByTopicFinished?topic_id=${topic.id}"><c:out value="${topic.name}"/></a>
+                <a class="dropdown-item" href="adminCourseByTopicFinished?topic_id=${topic.id}"><c:out
+                        value="${topic.name}"/></a>
             </c:forEach>
         </div>
     </div>
-</div><br/>
+</div>
+<br/>
 <div class="container">
     <h3><fmt:message key="login.completedCourse"/></h3>
     <table class="table table-bordered table-hover">
@@ -74,7 +78,8 @@
             <th><fmt:message key="login.topic"/>
                 <c:choose>
                     <c:when test="${sortingMode eq 'DESC'}">
-                        <a href="adminCoursesList?sortingColumn=t.name&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
+                        <a href="adminCoursesList?sortingColumn=t.name&sortingMode=ASC"><i
+                                class="fa fa-sort-up"></i></a>
                     </c:when>
                     <c:otherwise>
                         <a href="adminCoursesList?sortingColumn=t.name&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
@@ -84,7 +89,8 @@
             <th><fmt:message key="login.name"/>
                 <c:choose>
                     <c:when test="${sortingMode eq 'DESC'}">
-                        <a href="adminCoursesList?sortingColumn=c.name&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
+                        <a href="adminCoursesList?sortingColumn=c.name&sortingMode=ASC"><i
+                                class="fa fa-sort-up"></i></a>
                     </c:when>
                     <c:otherwise>
                         <a href="adminCoursesList?sortingColumn=c.name&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
@@ -93,19 +99,23 @@
             <th><fmt:message key="login.dataStart"/>
                 <c:choose>
                     <c:when test="${sortingMode eq 'DESC'}">
-                        <a href="adminCoursesList?sortingColumn=c.date_start&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
+                        <a href="adminCoursesList?sortingColumn=c.date_start&sortingMode=ASC"><i
+                                class="fa fa-sort-up"></i></a>
                     </c:when>
                     <c:otherwise>
-                        <a href="adminCoursesList?sortingColumn=c.date_start&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
+                        <a href="adminCoursesList?sortingColumn=c.date_start&sortingMode=DESC"><i
+                                class="fa fa-sort-down"></i></a>
                     </c:otherwise>
                 </c:choose></th>
-            <th><fmt:message key="login.durationInWeeks"/>
+            <th><fmt:message key="login.duration"/>
                 <c:choose>
                     <c:when test="${sortingMode eq 'DESC'}">
-                        <a href="adminCoursesList?sortingColumn=c.duration&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
+                        <a href="adminCoursesList?sortingColumn=c.duration&sortingMode=ASC"><i
+                                class="fa fa-sort-up"></i></a>
                     </c:when>
                     <c:otherwise>
-                        <a href="adminCoursesList?sortingColumn=c.duration&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
+                        <a href="adminCoursesList?sortingColumn=c.duration&sortingMode=DESC"><i
+                                class="fa fa-sort-down"></i></a>
                     </c:otherwise>
                 </c:choose></th>
             <th><fmt:message key="login.teacher"/>
@@ -114,7 +124,8 @@
                         <a href="adminCoursesList?sortingColumn=u.surname&sortingMode=ASC"><i class="fa fa-sort-up"></i></a>
                     </c:when>
                     <c:otherwise>
-                        <a href="adminCoursesList?sortingColumn=u.surname&sortingMode=DESC"><i class="fa fa-sort-down"></i></a>
+                        <a href="adminCoursesList?sortingColumn=u.surname&sortingMode=DESC"><i
+                                class="fa fa-sort-down"></i></a>
                     </c:otherwise>
                 </c:choose></th>
             <th><fmt:message key="course.status"/></th>
@@ -123,8 +134,8 @@
         </thead>
         <tbody>
         <c:choose>
-            <c:when test="${finished == null || finished.isEmpty()}"><br/>
-                <h5 style="color: red"><fmt:message key="course.notFound"/></h5>
+        <c:when test="${finished == null || finished.isEmpty()}"><br/>
+            <h5 style="color: red"><fmt:message key="course.notFound"/></h5>
         </c:when>
         <c:otherwise><br/>
         <c:forEach var="course" items="${finished}">
@@ -145,137 +156,40 @@
         </c:forEach>
         </tbody>
     </table>
-<nav aria-label="Navigation for countries">
-    <ul class="pagination">
-        <c:if test="${currentPage != 1}">
-            <li class="page-item"><a class="page-link"
-                                     href="completedCourseAdmin?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}"><fmt:message key="pagin.previous"/></a>
-            </li>
-        </c:if>
+    <nav aria-label="Navigation for countries">
+        <ul class="pagination">
+            <c:if test="${currentPage != 1}">
+                <li class="page-item"><a class="page-link"
+                                         href="completedCourseAdmin?recordsPerPage=${recordsPerPage}&currentPage=${currentPage-1}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}"><fmt:message
+                        key="pagin.previous"/></a>
+                </li>
+            </c:if>
 
-        <c:forEach begin="1" end="${noOfPages}" var="i">
-            <c:choose>
-                <c:when test="${currentPage eq i}">
-                    <li class="page-item active"><a class="page-link">
-                            ${i} <span class="sr-only">(current)</span></a>
-                    </li>
-                </c:when>
-                <c:otherwise>
-                    <li class="page-item"><a class="page-link"
-                                             href="completedCourseAdmin?recordsPerPage=${recordsPerPage}&currentPage=${i}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}">${i}</a>
-                    </li>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
+            <c:forEach begin="1" end="${noOfPages}" var="i">
+                <c:choose>
+                    <c:when test="${currentPage eq i}">
+                        <li class="page-item active"><a class="page-link">
+                                ${i} <span class="sr-only">(current)</span></a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item"><a class="page-link"
+                                                 href="completedCourseAdmin?recordsPerPage=${recordsPerPage}&currentPage=${i}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}">${i}</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
 
-        <c:if test="${currentPage lt noOfPages}">
-            <li class="page-item"><a class="page-link"
-                                     href="completedCourseAdmin?recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}"><fmt:message key="pagin.next"/></a>
-            </li>
-        </c:if>
-    </ul>
-</nav>
+            <c:if test="${currentPage lt noOfPages}">
+                <li class="page-item"><a class="page-link"
+                                         href="completedCourseAdmin?recordsPerPage=${recordsPerPage}&currentPage=${currentPage+1}&sortingColumn=${sortingColumn}&sortingMode=${sortingMode}"><fmt:message
+                        key="pagin.next"/></a>
+                </li>
+            </c:if>
+        </ul>
+    </nav>
     </c:otherwise>
     </c:choose>
 </div>
-<%--<table class="table table-hover">--%>
-<%--    <thead>--%>
-<%--    <tr>--%>
-<%--        <th scope="col">Тема</th>--%>
-<%--        <th scope="col">Назва</th>--%>
-<%--        <th scope="col">Дата початку</th>--%>
-<%--        <th scope="col">Тривалість</th>--%>
-<%--        <th scope="col">Викладач</th>--%>
-<%--&lt;%&ndash;        <th scope="col">Статус</th>&ndash;%&gt;--%>
-<%--        <th scope="col">Редагувати</th>--%>
-<%--    </tr>--%>
-<%--    </thead>--%>
-<%--    <tbody>--%>
-<%--    <tr>--%>
-<%--        <c:forEach var="course" items="${finished}">--%>
-<%--    <tr>--%>
-
-<%--        <td><c:out value="${course.topic.name }"/></td>--%>
-<%--        <td><c:out value="${course.name }"/></td>--%>
-<%--        <td><c:out value="${course.dateStart }"/></td>--%>
-<%--        <td><c:out value="${course.duration }"/></td>--%>
-<%--        <td><c:out value="${course.teacher.surname} ${course.teacher.name}"/></td>--%>
-<%--&lt;%&ndash;        <td>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <form action="/changeCourseStatus?status=progress&course_id=${course.id}" method="post">&ndash;%&gt;--%>
-<%--&lt;%&ndash;                <input type="submit" value="Запустить"/>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            </form>&ndash;%&gt;--%>
-<%--&lt;%&ndash;        </td>&ndash;%&gt;--%>
-<%--        <td><a--%>
-<%--                href="/editCourse?course_id=${course.id}">--%>
-<%--            <button type="button">Редагувати</button>--%>
-<%--        </a></td>--%>
-
-<%--    </tr>--%>
-<%--    </c:forEach>--%>
-<%--    </tbody>--%>
-<%--</table>--%>
-<%--<div class="container">--%>
-<%--    <h1>Архівні курси</h1>--%>
-
-<%--    <div id="toolbar">--%>
-<%--    </div>--%>
-
-<%--    <table id="table"--%>
-<%--           data-toggle="table"--%>
-<%--           data-search="true"--%>
-<%--           data-filter-control="true"--%>
-<%--           data-show-export="true"--%>
-<%--           data-click-to-select="true"--%>
-<%--           data-toolbar="#toolbar"--%>
-<%--           class="table-responsive">--%>
-<%--        <thead>--%>
-<%--        <tr>--%>
-<%--            <th data-field="topic" data-filter-control="input" data-sortable="true">Тема</th>--%>
-<%--            <th data-field="name" data-filter-control="input" data-sortable="true">Назва</th>--%>
-<%--            <th data-field="dateStart" data-filter-control="input" data-sortable="true">Дата початку</th>--%>
-<%--            <th data-field="duration" data-filter-control="select" data-sortable="true">Тривалість</th>--%>
-<%--            <th data-field="teacher" data-filter-control="select" data-sortable="true">Викладач</th>--%>
-<%--            <th data-field="edit" data-sortable="false">Редагувати</th>--%>
-<%--        </tr>--%>
-<%--        </thead>--%>
-<%--        <tbody>--%>
-<%--            <c:forEach var="course" items="${finished}">--%>
-<%--        <tr>--%>
-
-<%--            <td><c:out value="${course.topic.name }"/></td>--%>
-<%--            <td><c:out value="${course.name }"/></td>--%>
-<%--            <td><c:out value="${course.dateStart }"/></td>--%>
-<%--            <td><c:out value="${course.duration }"/></td>--%>
-<%--            <td><c:out value="${course.teacher.surname} ${course.teacher.name}"/></td>--%>
-
-<%--            <td><a href="/editCourse?course_id=${course.id}">--%>
-<%--                <button type="button">Редагувати</button>--%>
-<%--            </a></td>--%>
-
-<%--        </tr>--%>
-<%--        </c:forEach>--%>
-<%--        </tbody>--%>
-<%--    </table>--%>
-<%--</div>--%>
-
-<%--<script>--%>
-<%--    var $table = $('#table');--%>
-<%--    $(function () {--%>
-<%--        $('#toolbar').find('select').change(function () {--%>
-<%--            $table.bootstrapTable('refreshOptions', {--%>
-<%--                exportDataType: $(this).val()--%>
-<%--            });--%>
-<%--        });--%>
-<%--    })--%>
-
-<%--    var trBoldBlue = $("table");--%>
-
-<%--    $(trBoldBlue).on("click", "tr", function (){--%>
-<%--        $(this).toggleClass("bold-blue");--%>
-<%--    });--%>
-<%--</script>--%>
-
-<%--<input type="button" value="На главную" onclick="location.href='/adminPage'"/>--%>
-
 </body>
 </html>

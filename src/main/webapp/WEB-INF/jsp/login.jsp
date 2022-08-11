@@ -1,12 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />--%>
 <fmt:setLocale value="${language}" />
-<fmt:setBundle basename="i18n.login" />
+<fmt:setBundle basename="localization" />
 <html>
 <head>
-    <title>Логин</title>
+    <title>Login</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -18,8 +17,6 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
           integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
-
 
     <style>
         body {
@@ -107,9 +104,9 @@
         <h2>Help In Wartime<br> Stop War</h2>
         <p>Все буде Україна</p>
         <a href="/coursesListGuest">
-            <button class="btn btn-outline-dark">Learn More</button>
+            <button class="btn btn-outline-dark"><fmt:message key="login.more"/></button>
         </a><br/>
-        <p>Оберіть мову</p>
+        <p><fmt:message key="profile.lang.choose"/></p>
         <a href="?lang=EN"><img src="/images?filename=british-flag-2.png"/></a>
         <a href="?lang=UA"><img src="/images?filename=flag-3d-UA 2.png"/></a><br/>
     </div>
@@ -117,8 +114,6 @@
 <div class="main">
     <div class="col-md-6 col-sm-12">
         <div class="login-form">
-<%--                    <a href="?lang=EN"><img src="/images?filename=british-flag-2.png"/></a>--%>
-<%--                    <a href="?lang=UA"><img src="/images?filename=flag-3d-UA 2.png"/></a>--%>
             <form action="/login" name="email" method="post">
                 <p>
                     <input type="text" class="form-control" name="email" placeholder="<fmt:message key="login.enterLogin"/>" value="<c:if test="${not empty restoredValues.email}">${restoredValues.email}</c:if>" required/>
