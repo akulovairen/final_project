@@ -70,7 +70,6 @@ public class SecurityFilter implements Filter {
         if (!accessibleUrls.contains(path)) {
             log.warn("Path {} is not accessible for role {}", path, role);
             throw new PermissionDeniedException("Page is not accessible for this role");
-
         } else {
             chain.doFilter(req, res);
         }

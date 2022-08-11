@@ -19,8 +19,5 @@ public class UserAuthenticationService {
 
         return user.getPassword().equals(DigestUtils.md5Hex(inputPassword));
 
-//        boolean unlocked = user.getLocked() == null || !user.getLocked();
-//
-//        return isPasswordCorrect && unlocked;
     }
 }

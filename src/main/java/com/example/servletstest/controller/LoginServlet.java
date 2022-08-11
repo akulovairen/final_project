@@ -84,7 +84,7 @@ public class LoginServlet extends HttpServlet {
             User user = usersService.getUserByEmail(email);
             Boolean locked = user.getLocked();
             if(locked){
-                messagesMap.put("authenticationError",LocalizedValidatorUtil.getLocalizationValue("Ви заблоковані",locale));
+                messagesMap.put("authenticationError", LocalizedValidatorUtil.getLocalizationValue("login.block.invalid",locale));
                 request.getSession().setAttribute("messagesMap", messagesMap);
                 RequestUtils.restoreFormValues(request);
                 response.sendRedirect("/login");

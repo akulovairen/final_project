@@ -97,8 +97,13 @@
                 xhr.open("POST", '/teacherGradebookByCourse', true);
                 xhr.setRequestHeader("Content-type", "application/json");
                 xhr.onreadystatechange = function () {
-                    if (xhr.readyState == XMLHttpRequest.DONE || xhr.status == 200 || xhr.status == 201) {
-                        location.href = '/teacherGradebookByCourse?course_id=' + courseId;
+                    if (xhr.readyState == XMLHttpRequest.DONE) {
+                        console.log('status is = ' + xhr.status);
+                        if (xhr.status == 200 || xhr.status == 201) {
+                            location.href = '/teacherGradebookByCourse?course_id=' + courseId;
+                        } else {
+                            document.getElementById("errMsg").innerHTML = "<span style='color: red'>Error. Value should be between 0 and 5</span>";
+                        }
                     }
                 }
                 xhr.send(JSON.stringify(requestBody));
@@ -179,6 +184,7 @@
         </tbody>
     </table>
     <button type="button" onclick="submitGradebook()"><fmt:message key="gradebook.updateAll"/></button>
+    <div id="errMsg"></div>
 </div>
 
 <script>

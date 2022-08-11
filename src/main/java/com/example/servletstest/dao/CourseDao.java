@@ -38,7 +38,6 @@ public class CourseDao {
         try (PreparedStatement pst = connection.prepareStatement(sql)) {
             pst.setString(1, status);
             try (ResultSet rs = pst.executeQuery()) {
-
                 if (rs.next()) {
                     count = rs.getInt("counter");
                 }

@@ -26,8 +26,8 @@ public class CourseService {
     private CourseDao courseDao = new CourseDao();
     private final CourseUserService courseUserService=new CourseUserService(new CourseUserDao());
     private final Logger log = LogManager.getLogger(CourseService.class);
-    private  ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-    private Validator validator = factory.getValidator();
+//    private  ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+//    private Validator validator = factory.getValidator();
 
     /**
      * Create course service.
@@ -121,17 +121,9 @@ public class CourseService {
      */
     public int createCourse(String name, LocalDate dateStart, int duration, String description, int topicId, int teacherId, String status,Locale locale) throws CustomValidationException {
         log.info("Creating course for parameters: name={}, dateStart={}, duration={}, description={}, topicId={}, teacherId={}, status={}", name, dateStart, duration, description, topicId, teacherId, status);
-//        Course course = new Course();
-
-//        Topic topic = new Topic();
-//        topic.setId(topicId);
-//        course.setTopic(topic);
 
         Topic topic = new Topic.TopicBuilder().withId(topicId).build();
 
-//        User user = new User();
-//        user.setId(teacherId);
-//        course.setTeacher(user);
         User user = new User.UserBuilder().withId(teacherId).build();
 
         Course course = new Course.CourseBuilder()
@@ -142,12 +134,6 @@ public class CourseService {
                 .withTopic(topic)
                 .withTeacher(user)
                 .withStatus(status).build();
-
-//        course.setName(name);
-//        course.setDateStart(dateStart);
-//        course.setDuration(duration);
-//        course.setDescription(description);
-//        course.setStatus(status);
 
         Validator validator = LocalizedValidatorUtil.getValidatorByLocale(locale);
         Set<ConstraintViolation<Course>> constraintViolationSet = validator.validate(course);
@@ -200,16 +186,8 @@ public class CourseService {
      */
     public void updateCourse(int id, String name, LocalDate dateStart, int duration, String description, int topicId, int teacherId, Locale locale) throws CustomValidationException {
         log.info("Updating course by id={},name={},dateStart={},duration={},description={},topicId={},teacherId={}", id, name, dateStart, duration, description, topicId, teacherId);
-//        Course course = new Course();
-
-//        Topic topic = new Topic();
-//        topic.setId(topicId);
-//        course.setTopic(topic);
         Topic topic = new Topic.TopicBuilder().withId(topicId).build();
 
-//        User user = new User();
-//        user.setId(teacherId);
-//        course.setTeacher(user);
         User user = new User.UserBuilder().withId(teacherId).build();
 
         Course course = new Course.CourseBuilder()
@@ -222,12 +200,6 @@ public class CourseService {
                 .withTeacher(user)
                 .build();
 
-//        course.setId(id);
-//        course.setName(name);
-//        course.setDateStart(dateStart);
-//        course.setDuration(duration);
-//        course.setDescription(description);
-
         Validator validator = LocalizedValidatorUtil.getValidatorByLocale(locale);
         Set<ConstraintViolation<Course>> constraintViolationSet = validator.validate(course);
         Map<String, String> errorMap =
@@ -235,6 +207,12 @@ public class CourseService {
                         .stream()
                         .collect(Collectors.toMap(userConstraintViolation -> userConstraintViolation.getPropertyPath().toString(), ConstraintViolation::getMessage));
 
+        Optional<Course> course1 = courseDao.findCourse(id);
+        course1.ifPresent(course2 -> {
+            if(course2.getDateStart().equals(dateStart)){
+                errorMap.remove("dateStart");
+            }
+        });
         if (!errorMap.isEmpty()) {
             throw new CustomValidationException(errorMap);
         }

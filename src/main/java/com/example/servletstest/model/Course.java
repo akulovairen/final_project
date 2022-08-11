@@ -12,8 +12,6 @@ public class Course implements java.io.Serializable {
     @Id
     private int id;
     @NotEmpty(message = "{course.name.invalid}")
-//    @Min(value = 3,message = "Курс повинен мати більше ніж 3 символа")
-//    @Max(value = 5, message = "Should be <= 5 symbols")
     private String name;
     @ManyToOne
     @JoinColumn(name = "topic_id",nullable = false)
@@ -22,7 +20,6 @@ public class Course implements java.io.Serializable {
     @Column(name = "date_start")
     @Future(message = "{course.date.invalid}")
     private LocalDate dateStart;
-//    @NotNull(message = "Поле не може бути порожнім")
     @Min(value = 1, message = "{course.duration.invalid}")
     private int duration;
     private String description;

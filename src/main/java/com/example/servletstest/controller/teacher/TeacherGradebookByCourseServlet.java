@@ -69,10 +69,9 @@ public class TeacherGradebookByCourseServlet extends HttpServlet {
         Locale locale = (Locale) req.getSession().getAttribute("userLocale");
         try {
             gradebookService.updateGradebookByCourse(gradebookDto,locale);
-            resp.sendRedirect("/teacherGradebookByCourse?course_id" + gradebookDto.getCourseId());
+            resp.sendRedirect("/teacherGradebookByCourse?course_id=" + gradebookDto.getCourseId());
         } catch (CustomValidationException e) {
-            req.getSession().setAttribute("messagesMap", e.getErrorsMap());
-            resp.sendRedirect("/teacherGradebookByCourse?course_id" + gradebookDto.getCourseId());
+            resp.sendError(400);
         }
     }
 

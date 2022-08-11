@@ -18,7 +18,7 @@ public class ImageController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String filenameParam = req.getParameter("filename");
         if (filenameParam == null || !filenameParam.contains(".")) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.sendError(400, "Image name empty or invalid");
             return;
         }
         String extension = filenameParam.substring(filenameParam.lastIndexOf(".") + 1);
