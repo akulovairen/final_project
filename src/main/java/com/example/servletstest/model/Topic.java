@@ -15,7 +15,7 @@ import java.util.List;
 public class Topic {
     @Id
     private int id;
-    @Size(min = 3, max = 40, message = "topic.name.invalid")
+    @Size(min = 3, max = 40, message = "{topic.name.invalid}")
     private String name;
 
     @OneToMany(mappedBy = "course")

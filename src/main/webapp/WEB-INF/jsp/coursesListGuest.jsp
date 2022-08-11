@@ -288,7 +288,7 @@
             <h1 class="leader"><fmt:message key="slogan.supportUkraine"/></h1>
             <p>SUPPORT | UKRAINE</p>
             <p class="lead">
-                <a class="btn btn-success btn-lg" href="#" role="button"> <fmt:message key="slogan.join"/></a><br/>
+                <a class="btn btn-success btn-lg" href="/registration" role="button"> <fmt:message key="slogan.join"/></a><br/>
                 <a class="btn btn-lg" href="?lang=UA" role="button">UA</a>
                 <a class="btn btn-lg" href="?lang=EN" role="button">EN</a>
             </p>

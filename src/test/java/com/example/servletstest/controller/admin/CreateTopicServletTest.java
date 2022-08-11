@@ -11,6 +11,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 
 import static org.mockito.ArgumentMatchers.anyString;
@@ -33,6 +34,9 @@ public class CreateTopicServletTest {
                 return servletContext; // return the mock
             }
         };
+
+        HttpSession session = mock(HttpSession.class);
+        when(request.getSession()).thenReturn(session);
     }
 
     @Test

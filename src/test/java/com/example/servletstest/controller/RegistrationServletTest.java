@@ -40,6 +40,8 @@ class RegistrationServletTest {
 
     @Test
     void testGet() {
+        HttpSession session = mock(HttpSession.class);
+        when(request.getSession()).thenReturn(session);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
         when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
         boolean success;

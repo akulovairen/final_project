@@ -12,6 +12,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.io.PrintWriter;
 
@@ -29,18 +30,21 @@ public class CreateCourseServletTest {
 
     @BeforeEach
     public void setUp() {
-        RequestDispatcher dispatcher = mock(RequestDispatcher.class);
-        when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
+
         final ServletContext servletContext = mock(ServletContext.class);
         testingServlet = new CreateCourseServlet() {
             public ServletContext getServletContext() {
                 return servletContext; // return the mock
             }
         };
+        HttpSession session = mock(HttpSession.class);
+        when(request.getSession()).thenReturn(session);
     }
 
     @Test
     public void testGet() {
+        RequestDispatcher dispatcher = mock(RequestDispatcher.class);
+        when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
         boolean success;
         try {
             testingServlet.doGet(request, response);

@@ -36,7 +36,6 @@ public class CourseListGuestServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.info("GUEST SESSION ID = "+ req.getSession().getId());
         List<Topic> allTopic = topicService.getAllTopic();
         List<Course> forGuest = courseService.findByStatusForGuest();
 

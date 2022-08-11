@@ -1,6 +1,7 @@
 package com.example.servletstest.controller;
 
 import com.example.servletstest.controller.teacher.TeacherAvailableCourseServlet;
+import com.example.servletstest.util.LocalizedValidatorUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,6 +38,8 @@ class EditProfileServletTest {
                 return servletContext; // return the mock
             }
         };
+        HttpSession session = mock(HttpSession.class);
+        when(request.getSession()).thenReturn(session);
     }
 
 
@@ -69,6 +72,7 @@ class EditProfileServletTest {
             when(request.getParameter("surname")).thenReturn("Fariot");
             when(request.getParameter("email")).thenReturn("ivan@gmail.com");
             when(request.getParameter("birthday")).thenReturn(LocalDate.now().minusDays(1L).toString());
+            when(session.getAttribute("userLocale")).thenReturn(LocalizedValidatorUtil.UKRAINE_LOCALE);
             testingServlet.doPost(request, response);
 //            courseService.updateCourse();
         } catch (Exception e) {

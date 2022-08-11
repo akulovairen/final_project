@@ -3,10 +3,12 @@ package com.example.servletstest.controller.teacher;
 import com.example.servletstest.dao.GradebookDao;
 import com.example.servletstest.dto.GradebookDto;
 import com.example.servletstest.exception.CustomValidationException;
+import com.example.servletstest.exception.serviceException.gradebook.GradebookParseException;
 import com.example.servletstest.model.Gradebook;
 import com.example.servletstest.service.GradebookService;
-import com.example.servletstest.util.RequestUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +29,7 @@ import java.util.Map;
 @WebServlet(value = "/teacherGradebookByCourse")
 public class TeacherGradebookByCourseServlet extends HttpServlet {
     private final ObjectMapper objectMapper = new ObjectMapper();
-
+    private static Logger log = LogManager.getLogger(TeacherGradebookByCourseServlet.class);
     private final GradebookService gradebookService=new GradebookService(new GradebookDao());
 
     /**
@@ -48,12 +50,7 @@ public class TeacherGradebookByCourseServlet extends HttpServlet {
         if(errorMap!=null && !errorMap.isEmpty()){
             req.setAttribute("messagesMap",errorMap);
         }
-        Map<String, String> restoredValues = (Map<String, String>) req.getSession().getAttribute("restoredValues");
-        if(restoredValues!=null && !restoredValues.isEmpty()){
-            req.setAttribute("restoredValues",restoredValues);
-        }
         req.getSession().removeAttribute("messagesMap");
-        req.getSession().removeAttribute("restoredValues");
 
         req.getRequestDispatcher("/WEB-INF/jsp/teacher/teacherGradebookByCourse.jsp").forward(req, resp);
     }
@@ -66,7 +63,7 @@ public class TeacherGradebookByCourseServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String body = getBody(req);
+        String body = convertRequestAsJsonString(req);
         GradebookDto gradebookDto = objectMapper.readValue(body, GradebookDto.class);
 
         Locale locale = (Locale) req.getSession().getAttribute("userLocale");
@@ -75,13 +72,11 @@ public class TeacherGradebookByCourseServlet extends HttpServlet {
             resp.sendRedirect("/teacherGradebookByCourse?course_id" + gradebookDto.getCourseId());
         } catch (CustomValidationException e) {
             req.getSession().setAttribute("messagesMap", e.getErrorsMap());
-            RequestUtils.restoreFormValues(req);
             resp.sendRedirect("/teacherGradebookByCourse?course_id" + gradebookDto.getCourseId());
         }
     }
 
-    public static String getBody(HttpServletRequest request)  {
-
+    public static String convertRequestAsJsonString(HttpServletRequest request)  {
         String body = null;
         StringBuilder stringBuilder = new StringBuilder();
         BufferedReader bufferedReader = null;
@@ -99,18 +94,16 @@ public class TeacherGradebookByCourseServlet extends HttpServlet {
                 stringBuilder.append("");
             }
         } catch (IOException ex) {
-            // throw ex;
-            return "";
+            throw new GradebookParseException("Cannot parse gradebook", ex);
         } finally {
             if (bufferedReader != null) {
                 try {
                     bufferedReader.close();
                 } catch (IOException ex) {
-
+                    log.warn("Cannot close bufferReader");
                 }
             }
         }
-
         body = stringBuilder.toString();
         return body;
     }

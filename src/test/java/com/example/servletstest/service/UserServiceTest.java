@@ -201,8 +201,8 @@ class UserServiceTest {
             fail();
         }catch (CustomValidationException e){
             Map<String, String> errorsMap = e.getErrorsMap();
-            assertEquals("Ім'я повинно мати довжину від 1 до 25 символів", errorsMap.get("name"));
-            assertEquals("Прізвище повинно мати довжину від 1 до 40 символів",errorsMap.get("surname"));
+            assertEquals("Ім'я повинно мати довжину від 3 до 25 символів", errorsMap.get("name"));
+            assertEquals("Прізвище повинно мати довжину від 3 до 40 символів",errorsMap.get("surname"));
             assertEquals("Дата народження має бути у минулому часі",errorsMap.get("birthday"));
             assertEquals("Вказано невалідний email",errorsMap.get("email"));
         }

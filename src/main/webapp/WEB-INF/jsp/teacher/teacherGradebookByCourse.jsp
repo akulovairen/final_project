@@ -96,13 +96,12 @@
                 let xhr = new XMLHttpRequest();
                 xhr.open("POST", '/teacherGradebookByCourse', true);
                 xhr.setRequestHeader("Content-type", "application/json");
-                xhr.onreadystatechange = function () {//Вызывает функцию при смене состояния.
+                xhr.onreadystatechange = function () {
                     if (xhr.readyState == XMLHttpRequest.DONE || xhr.status == 200 || xhr.status == 201) {
                         location.href = '/teacherGradebookByCourse?course_id=' + courseId;
                     }
                 }
                 xhr.send(JSON.stringify(requestBody));
-
             } else {
                 return false;
             }
@@ -135,54 +134,22 @@
         <c:forEach var="course" items="${courseGradebook}">
             <tr id="st${course.student.id}">
                 <td><c:out value="${course.student.surname} ${course.student.name}"/></td>
-                <td><input type="number" min=0 max=5
-                        <c:choose>
-                            <c:when test="${restoredValues.test1 != null}">
-                                value="${restoredValues.test1}"
-                            </c:when>
-                            <c:otherwise>
-                                value="${course.test1}"
-                            </c:otherwise>
-                        </c:choose>
+                <td><input type="number" min=0 max=5 value="${course.test1}"
                 />
                     <c:if test="${not empty messagesMap.test1}">
                         <div style="color: red">${messagesMap.test1}</div>
                     </c:if></td>
-                <td><input type="number" min=0 max=5
-                        <c:choose>
-                            <c:when test="${restoredValues.test2 != null}">
-                                value="${restoredValues.test2}"
-                            </c:when>
-                            <c:otherwise>
-                                value="${course.test2}"
-                            </c:otherwise>
-                        </c:choose>
+                <td><input type="number" min=0 max=5 value="${course.test2}"
                 />
                     <c:if test="${not empty messagesMap.test2}">
                         <div style="color: red">${messagesMap.test2}</div>
                     </c:if></td>
-                <td><input type="number" min=0 max=5
-                        <c:choose>
-                            <c:when test="${restoredValues.test3 != null}">
-                                value="${restoredValues.test3}"
-                            </c:when>
-                            <c:otherwise>
-                                value="${course.test3}"
-                            </c:otherwise>
-                        </c:choose>
+                <td><input type="number" min=0 max=5 value="${course.test3}"
                 />
                     <c:if test="${not empty messagesMap.test3}">
                         <div style="color: red">${messagesMap.test3}</div>
                     </c:if></td>
-                <td><input type="number" min=0 max=5
-                        <c:choose>
-                            <c:when test="${restoredValues.test4 != null}">
-                                value="${restoredValues.test4}"
-                            </c:when>
-                            <c:otherwise>
-                                value="${course.test4}"
-                            </c:otherwise>
-                        </c:choose>
+                <td><input type="number" min=0 max=5 value="${course.test4}"
                 />
                     <c:if test="${not empty messagesMap.test4}">
                         <div style="color: red">${messagesMap.test4}</div>

@@ -127,27 +127,12 @@ public class GradebookService {
         Integer courseId = gradebookDto.getCourseId();
 
         List<Gradebook> gradebookList = gradebookDto.getData().stream().map(gradesObj -> {
-//            Gradebook gradebook = new Gradebook();
             Map<String, Integer> gradesMap = gradesObj.getGrades();
-//            gradebook.setTest1(gradesMap.getOrDefault("test1", 0));
-//            gradebook.setTest2(gradesMap.getOrDefault("test2", 0));
-//            gradebook.setTest3(gradesMap.getOrDefault("test3", 0));
-//            gradebook.setTest4(gradesMap.getOrDefault("test4", 0));
-
-//            Course course = new Course();
-//            course.setId(courseId);
 
             Course course = new Course.CourseBuilder().withId(courseId).build();
 
-//            User user = new User();
-//            user.setId(gradesObj.getStudentId());
 
             User user = new User.UserBuilder().withId(gradesObj.getStudentId()).build();
-
-//            gradebook.setCourse(course);
-//            gradebook.setStudent(user);
-//
-//            gradebook.setId(gradesObj.getGradebookId());
 
             Gradebook gradebook = new Gradebook.GradebookBuilder().withId(gradesObj.getGradebookId())
                     .withTest1(gradesMap.getOrDefault("test1", 0))
@@ -178,5 +163,4 @@ public class GradebookService {
 
         gradebookDao.updateGradebookByCourse(gradebookList);
     }
-// Todo: Сделать валидацию в JSP
 }

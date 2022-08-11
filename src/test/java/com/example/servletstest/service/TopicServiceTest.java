@@ -70,7 +70,7 @@ class TopicServiceTest {
             fail();
         }catch (CustomValidationException e){
             Map<String, String> errorsMap = e.getErrorsMap();
-            assertEquals("Назва повинна мати більш ніж 3 символа", errorsMap.get("name"));
+            assertEquals("Тема повинна мати назву довжиною від 3 до 40 символів", errorsMap.get("name"));
         }
     }
 }

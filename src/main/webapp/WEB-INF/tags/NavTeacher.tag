@@ -16,10 +16,10 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> <fmt:message key="login.profile"/></a></li>
-            <li><a onclick="return confirmDelete();" href="/logout"><span class="glyphicon glyphicon-log-in"></span> <fmt:message key="login.logout"/></a></li>
+            <li><a onclick="return confirmLogout();" href="/logout"><span class="glyphicon glyphicon-log-in"></span> <fmt:message key="login.logout"/></a></li>
 
             <script>
-                function confirmDelete(){
+                function confirmLogout(){
                     if(confirm("Ви впевнені,що хочете вийти?")){
                         location.href='/logout';
                     }else {

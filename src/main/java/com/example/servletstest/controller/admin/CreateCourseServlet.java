@@ -85,7 +85,6 @@ public class CreateCourseServlet extends HttpServlet {
             req.getSession().setAttribute("messagesMap", e.getErrorsMap());
             RequestUtils.restoreFormValues(req);
             resp.sendRedirect("/createCourse");
-//            req.getRequestDispatcher("/WEB-INF/jsp/admin/createCourse.jsp").forward(req, resp);
         }
     }
 }

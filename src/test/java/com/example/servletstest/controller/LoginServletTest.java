@@ -2,6 +2,7 @@ package com.example.servletstest.controller;
 
 import com.example.servletstest.controller.admin.EditCourseServlet;
 import com.example.servletstest.service.CourseService;
+import com.example.servletstest.util.LocalizedValidatorUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +13,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,13 +36,14 @@ class LoginServletTest {
                 return servletContext; // return the mock
             }
         };
+        HttpSession session = mock(HttpSession.class);
+        when(request.getSession()).thenReturn(session);
+        when(session.getAttribute("userLocale")).thenReturn(LocalizedValidatorUtil.UKRAINE_LOCALE);
     }
 
     @Test
     void testPost() {
         try {
-            RequestDispatcher dispatcher = mock(RequestDispatcher.class);
-            when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
             when(request.getParameter("email")).thenReturn("ib@gmail.com");
             when(request.getParameter("password")).thenReturn("123");
 

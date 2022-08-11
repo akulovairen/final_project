@@ -32,6 +32,8 @@ public class CourseByTopicGuestServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int topicId = Integer.parseInt(req.getParameter("topic_id"));
+
         String currentPageParam = req.getParameter("currentPage");
         int currentPage = currentPageParam == null ? 1 : Integer.parseInt(currentPageParam);
         String recordsPerPageParam = req.getParameter("recordsPerPage");
@@ -43,21 +45,19 @@ public class CourseByTopicGuestServlet extends HttpServlet {
         String sortingMode = req.getParameter("sortingMode");
         sortingMode = sortingMode == null ? "ASC" : sortingMode;
 
-//        int teacherId = (int) req.getSession().getAttribute("user_id");
-        int topicId = Integer.parseInt(req.getParameter("topic_id"));
-//        int rows = courseService.getNumberOfRowsAdminCourseTopicStatus(CourseDao.SQLTask.GET_COURSE_BY_ADMIN_STATUS_AND_TOPIC_COUNT.getQUERY(),topicId, "progress" );
+        int rows = courseService.getNumberOfRowsAdminCourseTopicStatus(CourseDao.SQLTask.GET_COURSE_BY_ADMIN_STATUS_AND_TOPIC_COUNT.getQUERY(),topicId, "progress" );
 //
-//        int nOfPages = rows / recordsPerPage;
-//        if (nOfPages % recordsPerPage > 0) {
-//            nOfPages++;
-//        }
+        int nOfPages = rows / recordsPerPage;
+        if (nOfPages % recordsPerPage > 0) {
+            nOfPages++;
+        }
 
         req.setAttribute("sortingColumn", sortingColumn);
         req.setAttribute("sortingMode", sortingMode);
 
-//        req.setAttribute("noOfPages", nOfPages);
-//        req.setAttribute("currentPage", currentPage);
-//        req.setAttribute("recordsPerPage", recordsPerPage);
+        req.setAttribute("noOfPages", nOfPages);
+        req.setAttribute("currentPage", currentPage);
+        req.setAttribute("recordsPerPage", recordsPerPage);
 
         List<Topic> allTopic = topicService.getAllTopic();
 

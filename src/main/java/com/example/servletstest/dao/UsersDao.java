@@ -138,14 +138,6 @@ public class UsersDao {
 
             try (ResultSet rs = pst.executeQuery()) {
                 while (rs.next()) {
-//                    User user = new User();
-//                    user.setId(Integer.parseInt(rs.getString("id")));
-//                    user.setName(rs.getString("name"));
-//                    user.setSurname(rs.getString("surname"));
-//                    user.setBirthday(rs.getDate("birthday").toLocalDate());
-//                    user.setEmail(rs.getString("email"));
-//                    user.setLocked(rs.getBoolean("locked"));
-
                     User user = new User.UserBuilder().withId(Integer.parseInt(rs.getString("id")))
                             .withName(rs.getString("name"))
                             .withSurname(rs.getString("surname"))
@@ -188,6 +180,13 @@ public class UsersDao {
         return user;
     }
 
+    /**
+     * Delete user in DB by userId.
+     *
+     * @param userId - user id
+     * @throws UserNotDeletedException - if not delete user
+     * @return boolean
+     */
     public boolean deleteUser(int userId) {
         log.info("Deleting user from DB");
         int delete_rows;
@@ -208,6 +207,13 @@ public class UsersDao {
         }
     }
 
+    /**
+     * Finds user by email in DB
+     *
+     * @param email
+     * @throws UserNotFoundException - if not founds user
+     * @return - the user object wrapped in an {@link Optional}
+     */
     public Optional<User> findByEmail(String email) {
         log.info("Getting user by email={} from DB",email);
         Optional<User> optionalUser = Optional.empty();
@@ -231,6 +237,14 @@ public class UsersDao {
         }
     }
 
+    /**
+     * Finds all users with role 'teacher' in DB
+     *
+     * @param offset
+     * @param limit
+     * @throws UserNotFoundException - if not founds users
+     * @return list of users with pagination
+     */
     public List<User> findAllTeacher(int offset, int limit) {
         log.info("Getting all teachers from DB");
         List<User> userList = new ArrayList<>();
@@ -241,12 +255,6 @@ public class UsersDao {
             try (ResultSet rs = pst.executeQuery()) {
 
                 while (rs.next()) {
-//                    User user = new User();
-//                    user.setId(Integer.parseInt(rs.getString("id")));
-//                    user.setName(rs.getString("name"));
-//                    user.setSurname(rs.getString("surname"));
-//                    user.setBirthday(rs.getDate("birthday").toLocalDate());
-
                     User user = new User.UserBuilder().withId(Integer.parseInt(rs.getString("id")))
                             .withName(rs.getString("name"))
                             .withSurname(rs.getString("surname"))
@@ -263,50 +271,13 @@ public class UsersDao {
         }
     }
 
-//    public List<Course> coursesByUserId(int userId) throws SQLException {
-//        List<Course> courseList = new ArrayList<>();
-//        sessionManager.beginSession();
-//
-//        try (Connection connection = sessionManager.getCurrentSession();
-//             PreparedStatement pst = connection.prepareStatement(SQLTask.SELECT_COURSE_USER.QUERY)) {
-//            pst.setInt(1,userId);
-//            try (ResultSet rs = pst.executeQuery()) {
-//                while (rs.next()) {
-//                    Course course = new Course();
-//
-//                    int id = rs.getInt("id");
-//                    String name = rs.getString("name");
-//                    Date date_start = rs.getDate("date_start");
-//                    int duration = rs.getInt("duration");
-//                    String description = rs.getString("description");
-//                    int topicId = rs.getInt("topic_id");
-//                    int teacher_id = rs.getInt("teacher_id");
-//
-//                    Topic topic = new Topic();
-//                    topic.setId(topicId);
-//
-//                    User teacher = new User();
-//                    teacher.setId(teacher_id);
-//
-//                    course.setId(id);
-//                    course.setName(name);
-//                    course.setDateStart(date_start.toLocalDate());
-//                    course.setDuration(duration);
-//                    course.setDescription(description);
-//                    course.setTopic(topic);
-//                    course.setTeacher(teacher);
-//
-//                    courseList.add(course);
-//                    sessionManager.commitSession();
-//                }
-//            } catch (SQLException ex) {
-//                sessionManager.rollbackSession();
-//                throw ex;
-//            }
-//            return courseList;
-//        }
-//    }
-
+    /**
+     * Updates user in DB
+     *
+     * @param user - {@link User} model
+     * @throws UserNotUpdatedException - if not updated user
+     * @return {@link User} model
+     */
     public User updateUser(User user){
         log.info("Updating user in DB");
         Connection connection=sessionManager.beginSession();
@@ -330,6 +301,13 @@ public class UsersDao {
         }
     }
 
+    /**
+     * Blocks user by userId in DB.
+     *
+     * @param userId - user id
+     * @throws UserNotBlockedException - if user not blocked
+     * @return boolean
+     */
     public boolean userBlock(int userId){
         log.info("Blocking student by user_id={}",userId);
         int delete_rows;
@@ -349,6 +327,13 @@ public class UsersDao {
         }
     }
 
+    /**
+     * Unblocks user by userId in DB.
+     *
+     * @param userId - user id
+     * @throws UserNotUnblockedException - if user not unblocked
+     * @return boolean
+     */
     public boolean userUnblock(int userId){
         log.info("Unblocked student by userId={} in DB",userId);
         int delete_rows;
@@ -369,6 +354,13 @@ public class UsersDao {
         }
     }
 
+    /**
+     * Search user with role 'teacher' by text
+     *
+     * @param text - text
+     * @throws UserNotFoundException - if not founded users
+     * @return list {@link User}
+     */
     public List<User> searchTeacher(String text) {
         log.info("Getting all teachers from DB");
         List<User> userList = new ArrayList<>();
@@ -378,16 +370,8 @@ public class UsersDao {
              PreparedStatement pst = connection.prepareStatement(SQLTask.GET_ALL_TEACHER_SEARCH.QUERY)) {
             pst.setString(1, "%" + text + "%");
             pst.setString(2, "%" + text + "%");
-
-
             try (ResultSet rs = pst.executeQuery()) {
-
                 while (rs.next()) {
-//                    User user = new User();
-//                    user.setId(Integer.parseInt(rs.getString("id")));
-//                    user.setName(rs.getString("name"));
-//                    user.setSurname(rs.getString("surname"));
-//                    user.setBirthday(rs.getDate("birthday").toLocalDate());
 
                     User user = new User.UserBuilder().withId(Integer.parseInt(rs.getString("id")))
                             .withName(rs.getString("name"))

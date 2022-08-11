@@ -25,7 +25,7 @@
                                 key="login.profile"/></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" onclick="return confirmDelete();" href="/logout"><i
+                        <a class="nav-link" onclick="return confirmLogout();" href="/logout"><i
                                 class="fas fa-solid fa-arrow-right"></i> <fmt:message key="login.logout"/></a>
                     </li>
                     <%--                    <li class="nav-item">--%>
@@ -35,7 +35,7 @@
                     <%--                        <a class="nav-link" href="?lang=UA"><img src="/images?filename=flag-3d-UA 2.png"/></a>--%>
                     <%--                    </li>--%>
                     <script>
-                        function confirmDelete() {
+                        function confirmLogout() {
                             if (confirm("Ви впевнені,що хочете вийти?")) {
                                 location.href = '/logout';
                             } else {

@@ -40,8 +40,6 @@ class UserRegistrationServiceTest {
 
     @Test
     void registerUserFailure(){
-//        User user=new User();
-//        user.setEmail("masha@gmail.com");
 
         User user = new User.UserBuilder().withEmail("masha@gmail.com").build();
         when(usersDao.findByEmail(anyString())).thenReturn(Optional.of(user));
@@ -50,7 +48,7 @@ class UserRegistrationServiceTest {
             fail();
         }catch (CustomValidationException e){
             Map<String, String> errorsMap = e.getErrorsMap();
-            assertEquals("Користувач з таким email вже зареєстрований", errorsMap.get("email"));
+            assertEquals("Користувач з таким email вже існує", errorsMap.get("email"));
         }
     }
 
@@ -60,9 +58,9 @@ class UserRegistrationServiceTest {
             userRegistrationService.registerUser("","","masha","123","123","student", LocalDate.now().plusDays(1L), LocalizedValidatorUtil.UKRAINE_LOCALE);
             fail();
         }catch (CustomValidationException e){
-            Map<String, String> errorsMap = e.getErrorsMap();assertEquals("Ім'я повинно мати довжину від 1 до 25 символів", errorsMap.get("name"));
-            assertEquals("Прізвище повинно мати довжину від 1 до 40 символів",errorsMap.get("surname"));
-            assertEquals("Дата народження повинна бути у минулому часі",errorsMap.get("birthday"));
+            Map<String, String> errorsMap = e.getErrorsMap();assertEquals("Ім'я повинно мати довжину від 3 до 25 символів", errorsMap.get("name"));
+            assertEquals("Прізвище повинно мати довжину від 3 до 40 символів",errorsMap.get("surname"));
+            assertEquals("Дата народження має бути у минулому часі",errorsMap.get("birthday"));
             assertEquals("Вказано невалідний email",errorsMap.get("email"));
         }
     }

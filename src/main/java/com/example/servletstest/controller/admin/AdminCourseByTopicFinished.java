@@ -31,6 +31,7 @@ public class AdminCourseByTopicFinished extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int topicId = Integer.parseInt(req.getParameter("topic_id"));
         String currentPageParam = req.getParameter("currentPage");
         int currentPage = currentPageParam == null ? 1 : Integer.parseInt(currentPageParam);
         String recordsPerPageParam = req.getParameter("recordsPerPage");
@@ -42,7 +43,6 @@ public class AdminCourseByTopicFinished extends HttpServlet {
         String sortingMode = req.getParameter("sortingMode");
         sortingMode = sortingMode == null ? "ASC" : sortingMode;
 
-        int topicId = Integer.parseInt(req.getParameter("topic_id"));
         req.setAttribute("topic_id",topicId);
         int rows = courseService.getNumberOfRowsAdminCourseTopicStatus(CourseDao.SQLTask.GET_COURSE_BY_ADMIN_STATUS_AND_TOPIC_COUNT.getQUERY(),topicId, "finished");
 
